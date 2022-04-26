@@ -1,14 +1,14 @@
 import React from 'react';
-// import { apiFirstLetter } from '../services/apiServices';
+// import { apiIngredient } from '../services/apiServices';
 
 function SearchBar() {
   return (
     <div>
-      {
-        // apiIngredient('tomato');
-        // apiName('potato')
-        // apiFirstLetter('a')
-      }
+      {/* {
+        apiIngredient('tomato');
+        apiName('potato');
+        apiFirstLetter('a');
+      } */}
       <label htmlFor="search-input">
         <input
           type="text"
@@ -16,7 +16,7 @@ function SearchBar() {
           data-testid="search-input"
           name="search-input"
           placeholder="Search Recipe"
-          value={ searchInput }
+          // value={ searchInput }
           // onChange={ ({ target }) => setSearch(target.value) }
         />
       </label>
