@@ -5,6 +5,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Provider from './context/Provider';
 import Login from './pages/Login';
 
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import Login from './pages/Login';
+
 function App() {
   return (
     <Provider>
