@@ -8,13 +8,13 @@ function ExploreDrinks() {
       <button
         type="button"
         data-testid="explore-by-ingredient"
-        onClick={ () => history.push('/explore/foods/ingredients') }
+        onClick={ () => history.push('/explore/drinks/ingredients') }
       >
         By Ingredient
       </button>
       <button
         type="button"
-        data-testid="explore-by-nationality"
+        data-testid="explore-surprise"
         onClick={ () => history.push('') }
       >
         Surprise me!

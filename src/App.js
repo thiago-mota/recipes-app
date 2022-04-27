@@ -18,14 +18,17 @@ function App() {
           component={ Login }
         />
         <Route
+          exact
           path="/explore"
           component={ Explore }
         />
         <Route
+          exact
           path="/explore/foods"
           component={ ExploreFoods }
         />
         <Route
+          exact
           path="/explore/drinks"
           component={ ExploreDrinks }
         />

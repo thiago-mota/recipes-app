@@ -21,7 +21,7 @@ function ExploreFoods() {
       </button>
       <button
         type="button"
-        data-testid="explore-by-nationality"
+        data-testid="explore-surprise"
         onClick={ () => history.push('') }
       >
         Surprise me!
