@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { history } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 
 function Header() {
   const [showSearch, setshowSearch] = useState(false);
+  const history = useHistory();
   return (
     <header>
       <button
