@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import Provider from './context/Provider';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Login from './pages/Login';
 import Explore from './pages/Explore';
@@ -10,6 +10,7 @@ import ExploreDrinks from './pages/ExploreDrinks';
 
 function App() {
   return (
+   <Provider>
     <BrowserRouter>
       <Switch>
         <Route
@@ -34,6 +35,7 @@ function App() {
         />
       </Switch>
     </BrowserRouter>
+  </Provider>
   );
 }
 
