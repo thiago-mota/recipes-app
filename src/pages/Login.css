@@ -5,19 +5,19 @@
 form {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
 
 form input {
   height: 58px;
-  width: 50%;
+  width: 290px;
 }
 
 form button {
-  align-self: center;
   background: #6ce34f;
   border-style: none;
   height: 58px;
-  width: 60%;
+  width: 290px;
 }
 
 div {

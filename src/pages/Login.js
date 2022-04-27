@@ -62,26 +62,22 @@ function Login() {
         onSubmit={ handleSubmit }
       >
         <h1>Login</h1>
-        <label htmlFor="login-name-input">
-          <input
-            data-testid="email-input"
-            placeholder="Email"
-            id="email-name-input"
-            type="email"
-            value={ user.email }
-            onChange={ handleOnChange }
-          />
-        </label>
-        <label htmlFor="login-name-input">
-          <input
-            data-testid="password-input"
-            placeholder="Password"
-            id="password-login-input"
-            type="password"
-            value={ password }
-            onChange={ handleOnChange }
-          />
-        </label>
+        <input
+          data-testid="email-input"
+          placeholder="Email"
+          id="email-name-input"
+          type="email"
+          value={ user.email }
+          onChange={ handleOnChange }
+        />
+        <input
+          data-testid="password-input"
+          placeholder="Password"
+          id="password-login-input"
+          type="password"
+          value={ password }
+          onChange={ handleOnChange }
+        />
         <button
           data-testid="login-submit-btn"
           type="submit"
