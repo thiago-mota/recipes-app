@@ -1,0 +1,26 @@
+.rocksGlass {
+  width: 100px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+form input {
+  height: 58px;
+  width: 50%;
+}
+
+form button {
+  align-self: center;
+  background: #6ce34f;
+  border-style: none;
+  height: 58px;
+  width: 60%;
+}
+
+div {
+  margin: 20px;
+  text-align: center;
+}
