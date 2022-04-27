@@ -1,5 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+import Footer from '../components/Footer';
 
 function Explore() {
   const history = useHistory();
@@ -19,6 +20,7 @@ function Explore() {
       >
         Explore Drinks
       </button>
+      <Footer />
     </div>
   );
 }
