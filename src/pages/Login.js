@@ -22,9 +22,7 @@ function Login() {
     }
   }
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    console.log(`email: ${user.email}, password: ${password}`);
+  function handleSubmit() {
     setUser({
       email: '',
     });
