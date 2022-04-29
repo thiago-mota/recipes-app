@@ -1,0 +1,13 @@
+.foods {
+  margin-top: 0;
+  max-width: 360px;
+}
+
+.recipee-card img {
+  height: 109px;
+  width: 161px;
+}
+
+ul {
+  list-style-type: none;
+}

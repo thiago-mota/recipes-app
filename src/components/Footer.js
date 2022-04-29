@@ -1,37 +1,36 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import './Footer.css';
+import drinkIcon from '../images/drinkIcon.svg';
+import exploreIcon from '../images/exploreIcon.svg';
+import mealIcon from '../images/mealIcon.svg';
 
 function Footer() {
+  // const history = useHistory();
   return (
-    <div>
-      <footer data-testid="footer" className="footerIcons">
-        <link rel="stylesheet" type="text/css" href="App.css" media="screen" />
-        <a href="/drinks">
-          <input
-            type="button"
-            src="src/images/drinkIcon.svg"
-            alt="drink-icon"
-            data-testid="drinks-bottom-btn"
-          />
-        </a>
-        <a href="/explore">
-          <input
-            type="button"
-            src="src/images/exploreIcon.svg"
-            alt="explore-icon"
-            data-testid="explore-bottom-btn"
-          />
-        </a>
-        <a href="/foods">
-          <input
-            type="button"
-            src="src/images/mealIcon.svg"
-            alt="meal-icon"
-            data-testid="food-bottom-btn"
-          />
-        </a>
-      </footer>
-    </div>
+    <footer data-testid="footer" className="footerIcons">
+      <button
+        type="button"
+        // onClick={ history.push('/drinks') }
+        src={ drinkIcon }
+        alt="drink-icon"
+        data-testid="drinks-bottom-btn"
+      />
+      <button
+        type="button"
+        // onClick={ history.push('/explore') }
+        src={ exploreIcon }
+        alt="drink-icon"
+        data-testid="explore-bottom-btn"
+      />
+      <button
+        type="button"
+        // onClick={ history.push('/foods') }
+        src={ mealIcon }
+        alt="drink-icon"
+        data-testid="food-bottom-btn"
+      />
+    </footer>
   );
 }
 

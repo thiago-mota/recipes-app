@@ -8,8 +8,13 @@ form {
   justify-content: space-between;
 }
 
+h1 {
+  align-self: center;
+}
+
 form input {
   height: 58px;
+  margin-top: 10px;
   width: 290px;
 }
 
@@ -17,10 +22,13 @@ form button {
   background: #6ce34f;
   border-style: none;
   height: 58px;
+  margin-top: 20px;
   width: 290px;
 }
 
 div {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
   margin: 20px;
-  text-align: center;
 }
