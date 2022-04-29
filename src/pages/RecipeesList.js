@@ -1,17 +1,19 @@
 import React, { useEffect, useContext } from 'react';
+import { useLocation } from 'react-router-dom';
 import Header from '../components/Header';
 import Context from '../context/Context';
-import './Foods.css';
+import './RecipeesList.css';
 import RecipeeCard from '../components/RecipeeCard';
 import Footer from '../components/Footer';
 
-function Foods() {
+function RecipeesList() {
   const { data, initialRender } = useContext(Context);
+  const location = useLocation();
 
   useEffect(() => {
-    initialRender();
+    initialRender(location.pathname);
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [location.pathname]);
 
   return (
     <div className="foods">
@@ -34,4 +36,4 @@ function Foods() {
   );
 }
 
-export default Foods;
+export default RecipeesList;

@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Provider from './context/Provider';
 import Login from './pages/Login';
-import Foods from './pages/Foods';
+import RecipeesList from './pages/RecipeesList';
 import Explore from './pages/Explore';
 import ExploreFoods from './pages/ExploreFoods';
 import ExploreDrinks from './pages/ExploreDrinks';
@@ -22,7 +22,12 @@ function App() {
           <Route
             exact
             path="/foods"
-            component={ Foods }
+            component={ RecipeesList }
+          />
+          <Route
+            exact
+            path="/drinks"
+            component={ RecipeesList }
           />
           <Route
             exact

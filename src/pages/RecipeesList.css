@@ -1,6 +1,7 @@
 .foods {
-  margin-top: 0;
-  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .recipee-card img {

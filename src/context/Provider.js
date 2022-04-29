@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Context from './Context';
-import { apiIngredient, apiName, apiFirstLetter } from '../services/apiServices';
+import {
+  apiIngredient,
+  apiName,
+  apiFirstLetter,
+  apiDrinks } from '../services/apiServices';
 
 function Provider({ children }) {
   const [filterSearchInput, setFilterSearchInput] = useState({
@@ -36,11 +41,17 @@ function Provider({ children }) {
   };
 
   // Função que faz o fetch da página principal de receitas logo após o login
-  const initialRender = async () => {
-    const nOfMeals = 12;
-    const returnApi = await apiName('');
-    const slicedArray = returnApi.meals.slice(0, nOfMeals);
-    setData(slicedArray);
+  const initialRender = async (foodOrDrink) => {
+    const nOfRecipees = 12;
+    if (foodOrDrink === '/foods') {
+      const returnApi = await apiName('');
+      const slicedArray = returnApi.meals.slice(0, nOfRecipees);
+      setData(slicedArray);
+    } else if (foodOrDrink === '/drinks') {
+      const returnApi = await apiDrinks('');
+      const slicedArray = returnApi.drinks.slice(0, nOfRecipees);
+      setData(slicedArray);
+    }
   };
 
   const contextValue = {
