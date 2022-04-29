@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
 import Context from './Context';
-import { apiIngredient, apiName, apiFirstLetter } from '../services/apiServices';
+import { apiIngredient, apiName, apiFirstLetter } from '../services/apiFood';
+import { apiDrinkIngredient, apiDrinkName, apiDrinkFirstL } from '../services/apiDrinks';
 
 function Provider({ children }) {
   const [filterSearchInput, setFilterSearchInput] = useState({
@@ -16,23 +18,72 @@ function Provider({ children }) {
     setFilterSearchInput({ searchFiltered: target.value });
   };
 
-  const handleClickSearch = async () => {
+  const history = useHistory();
+
+  const searchFoodApi = async () => {
     const { searchFiltered } = filterSearchInput;
     if (selectedRadio === 'ingredient-search-radio') {
       const returnApi = await apiIngredient(searchFiltered);
       setData(returnApi);
-      // console.log(returnApi);
     }
     if (selectedRadio === 'name-search-radio') {
       const returnApi = await apiName(searchFiltered);
       setData(returnApi);
     }
     if (selectedRadio === 'first-letter-search-radio') {
-      const returnApi = await apiFirstLetter(searchFiltered);
-      setData(returnApi);
+      if (searchFiltered.length === 1) {
+        const returnApi = await apiFirstLetter(searchFiltered);
+        setData(returnApi);
+      } else {
+        return global.alert('Your search must have only 1 (one) character');
+      }
     }
     if (!selectedRadio || searchFiltered.length === 0) {
       return global.alert('Preencha corretamente os critérios da busca');
+    }
+  };
+
+  const { searchFiltered } = filterSearchInput;
+  const searchDrinkApi = async () => {
+    if (selectedRadio === 'ingredient-search-radio') {
+      const returnApi = await apiDrinkIngredient(searchFiltered);
+      setData(returnApi);
+    }
+    if (selectedRadio === 'name-search-radio') {
+      const returnApi = await apiDrinkName(searchFiltered);
+      setData(returnApi);
+    }
+    if (selectedRadio === 'first-letter-search-radio') {
+      if (searchFiltered.length <= 1) {
+        const returnApi = await apiDrinkFirstL(searchFiltered);
+        setData(returnApi);
+      } else {
+        return global.alert('Your search must have only 1 (one) character');
+      }
+    }
+    if (!selectedRadio || searchFiltered.length === 0) {
+      return global.alert('Preencha corretamente os critérios da busca');
+    }
+  };
+
+  const handleClickSearch = async (searchType) => {
+    if (searchType === 'food') {
+      searchFoodApi();
+      if (data.meals.length === 1 && data.meals !== null) {
+        history.push(`/foods/${searchFiltered}`);
+      }
+      if (data.drinks === null) {
+        return global.alert('Sorry, we haven\'t found any recipes for these filters.');
+      }
+    }
+    if (searchType === 'drink') {
+      searchDrinkApi();
+      if (!data.drinks) {
+        return global.alert('Sorry, we haven\'t found any recipes for these filters.');
+      }
+      if (data.drinks.length === 1 && data.drinks !== null) {
+        history.push(`/drinks/${searchFiltered}`);
+      }
     }
   };
 
@@ -44,10 +95,6 @@ function Provider({ children }) {
     setSelected,
     data,
   };
-
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
 
   return (
     <Context.Provider value={ contextValue }>

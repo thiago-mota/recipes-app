@@ -4,23 +4,23 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Provider from './context/Provider';
 import Login from './pages/Login';
-
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import Login from './pages/Login';
+import SearchDrinkBar from './components/SearchDrinkBar';
 
 function App() {
   return (
-    <Provider>
-      <BrowserRouter>
+
+    <BrowserRouter>
+      <Provider>
         <Switch>
           <Route
             exact
             path="/"
             component={ Login }
           />
+          <SearchDrinkBar />
         </Switch>
-      </BrowserRouter>
-    </Provider>
+      </Provider>
+    </BrowserRouter>
   );
 }
 
