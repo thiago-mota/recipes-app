@@ -6,7 +6,7 @@ function RecipeeCard(props) {
   const location = useLocation();
   const { index } = props;
   if (location.pathname === '/foods') {
-    const { strMeal, strMealThumb } = props.meal;
+    const { meal: { strMeal, strMealThumb } } = props;
     return (
       <li
         className="recipee-card"
@@ -25,7 +25,7 @@ function RecipeeCard(props) {
       </li>
     );
   } if (location.pathname === '/drinks') {
-    const { strDrink, strDrinkThumb } = props.meal;
+    const { meal: { strDrink, strDrinkThumb } } = props;
     return (
       <li
         className="recipee-card"
@@ -45,4 +45,10 @@ function RecipeeCard(props) {
     );
   }
 }
+
+RecipeeCard.propTypes = {
+  index: PropTypes.number.isRequired,
+  meal: PropTypes.objectOf(PropTypes.string).isRequired,
+};
+
 export default RecipeeCard;

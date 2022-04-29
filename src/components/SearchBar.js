@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import { useLocation } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import Context from '../context/Context';
 
 function SearchBar() {
@@ -65,9 +64,5 @@ function SearchBar() {
     </div>
   );
 }
-
-// SearchBar.propTypes = {
-//   searchType: PropTypes.node.isRequired,
-// };
 
 export default SearchBar;
