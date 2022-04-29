@@ -1,4 +1,9 @@
 .footerIcons {
-  bottom: 0 px;
+  background: #c4c4c4;
+  bottom: 0;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
   position: fixed;
+  width: 100%;
 }

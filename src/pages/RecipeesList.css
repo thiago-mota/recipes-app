@@ -1,0 +1,14 @@
+.foods {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.recipee-card img {
+  height: 109px;
+  width: 161px;
+}
+
+ul {
+  list-style-type: none;
+}
