@@ -11,8 +11,9 @@ import ExploreDrinks from './pages/ExploreDrinks';
 
 function App() {
   return (
-    <Provider>
-      <BrowserRouter>
+
+    <BrowserRouter>
+      <Provider>
         <Switch>
           <Route
             exact
@@ -45,8 +46,8 @@ function App() {
             component={ ExploreDrinks }
           />
         </Switch>
-      </BrowserRouter>
-    </Provider>
+      </Provider>
+    </BrowserRouter>
   );
 }
 
