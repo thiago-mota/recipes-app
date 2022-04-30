@@ -17,7 +17,7 @@ function RecipeesList() {
   }, [location.pathname]);
 
   return (
-    <div className="foods">
+    <div className="recipes">
       <Header />
       {data && !loading
         ? (

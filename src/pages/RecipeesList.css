@@ -1,4 +1,4 @@
-.foods {
+.recipes {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -16,7 +16,6 @@
 
 .recipe-card img {
   border-radius: 6px 6px 0 0;
-  height: 10%;
   width: 100%;
 }
 
@@ -31,6 +30,7 @@ ul {
   flex-wrap: wrap;
   justify-content: space-evenly;
   list-style-type: none;
+  margin-bottom: 50px;
   padding: 0;
   width: 100%;
 }

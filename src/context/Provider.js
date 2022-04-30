@@ -7,7 +7,7 @@ import { apiDrinkIngredient, apiDrinkName, apiDrinkFirstL } from '../services/ap
 
 function Provider({ children }) {
   const [filterSearchInput, setFilterSearchInput] = useState('');
-  const [selectedRadio, setSelected] = useState('');
+  const [selectedRadio, setSelected] = useState();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [idType, setIdType] = useState('idMeal');
@@ -18,13 +18,14 @@ function Provider({ children }) {
 
   const history = useHistory();
   const location = useLocation();
+  const alert = 'Sorry, we haven\'t found any recipes for these filters.';
 
   const initialRender = async (foodOrDrink) => {
     setLoading(true);
     const nOfRecipees = 12;
     if (foodOrDrink === '/foods') {
       const returnApi = await apiName('');
-      const slicedArray = returnApi.meals.slice(0, nOfRecipees);
+      const slicedArray = returnApi.slice(0, nOfRecipees);
       setData(slicedArray);
       setLoading(false);
     } else if (foodOrDrink === '/drinks') {
@@ -35,35 +36,44 @@ function Provider({ children }) {
     }
   };
 
-
+  const trimArray = (array) => {
+    const maxRecipes = 12;
+    if (array.length > maxRecipes) {
+      const slicedArray = array.slice(0, maxRecipes);
+      return slicedArray;
+    }
+    return array;
+  };
 
   const searchFoodApi = async () => {
     if (selectedRadio === 'ingredient-search-radio' && filterSearchInput) {
       const returnApi = await apiIngredient(filterSearchInput);
-      const returnArray = await returnApi.meals;
+      const returnArray = await returnApi;
       if (!returnArray) {
-        setData([]);
+        initialRender('/foods');
+        return global.alert(alert);
       }
-      setData(returnApi.meals);
+      setData(trimArray(returnArray));
     }
 
     if (selectedRadio === 'name-search-radio' && filterSearchInput) {
       const returnApi = await apiName(filterSearchInput);
-      const returnArray = await returnApi.meals;
+      const returnArray = await returnApi;
       if (!returnArray) {
-        initialRender();
+        initialRender('/foods');
+        return global.alert(alert);
       }
-      setData(returnApi.meals);
+      setData(trimArray(returnArray));
     }
 
     if (selectedRadio === 'first-letter-search-radio' && filterSearchInput) {
       if (filterSearchInput.length === 1) {
         const returnApi = await apiFirstLetter(filterSearchInput);
-        const returnArray = await returnApi.meals;
+        const returnArray = await returnApi;
         if (!returnArray) {
-          initialRender();
+          return global.alert(alert);
         }
-        setData(returnApi.meals);
+        setData(trimArray(returnArray));
       } else {
         return global.alert('Your search must have only 1 (one) character');
       }
@@ -79,7 +89,7 @@ function Provider({ children }) {
       const returnApi = await apiDrinkIngredient(filterSearchInput);
       const returnArray = await returnApi.drinks;
       if (!returnArray) {
-        initialRender();
+        return global.alert(alert);
       }
       setData(returnApi.drinks);
     }
@@ -87,12 +97,13 @@ function Provider({ children }) {
       const returnApi = await apiDrinkName(filterSearchInput);
       const returnArray = await returnApi.drinks;
       if (!returnArray) {
-        initialRender();
+        return global.alert(alert);
       }
-      setData(returnApi.drinks);
+      const drinks = trimArray(returnArray);
+      setData(drinks);
     }
     if (selectedRadio === 'first-letter-search-radio' && filterSearchInput) {
-      if (filterSearchInput.length >= 1) {
+      if (filterSearchInput.length === 1) {
         const returnApi = await apiDrinkFirstL(filterSearchInput);
         const returnArray = await returnApi.drinks;
         if (!returnArray) {
@@ -114,18 +125,14 @@ function Provider({ children }) {
     }
     if (searchType === '/drinks') {
       searchDrinkApi();
-
     }
   };
 
   function typeCheck(pathname) {
-    setLoading(true);
     if (pathname === '/foods') {
       setIdType('idMeal');
-      setLoading(false);
     } else if (pathname === '/drinks') {
       setIdType('idDrink');
-      setLoading(false);
     }
   }
 
@@ -137,13 +144,18 @@ function Provider({ children }) {
         location.pathname === '/drinks' && data.length === 1) {
         history.push(`/drinks/${data[0].idDrink}`);
       }
-    } else {
-      initialRender('/foods');
-      return global.alert('Sorry, we haven\'t found any recipes for these filters.');
+    } else if (!data) {
+      if (location.pathname === '/foods') {
+        initialRender('/foods');
+      }
+      if (location.pathname === '/drinks') {
+        initialRender('/drinks');
+      }
     }
+    setFilterSearchInput('');
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data]);
+  }, [data, location.pathname]);
 
   const contextValue = {
     handleSearchInput,
