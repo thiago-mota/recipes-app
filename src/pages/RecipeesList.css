@@ -5,20 +5,31 @@
   margin: 0;
 }
 
-.recipee-card img {
-  height: 109px;
+
+.recipe-card {
+  border-radius: 6px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  margin: 10px 0;
+  text-decoration: none;
+  width: 45%;
+}
+
+.recipe-card img {
+  border-radius: 6px 6px 0 0;
+  height: 10%;
   width: 100%;
 }
 
-li {
-  margin-bottom: 5px;
-  width: 48%;
+p {
+  color: black;
+  margin: 15px 0 10px 5px;
+  padding-left: 5px;
 }
 
 ul {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-evenly;
   list-style-type: none;
   padding: 0;
   width: 100%;
