@@ -2,13 +2,24 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  margin: 0;
 }
 
 .recipee-card img {
   height: 109px;
-  width: 161px;
+  width: 100%;
+}
+
+li {
+  margin-bottom: 5px;
+  width: 48%;
 }
 
 ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   list-style-type: none;
+  padding: 0;
+  width: 100%;
 }

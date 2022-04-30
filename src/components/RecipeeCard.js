@@ -4,7 +4,9 @@ import { useLocation } from 'react-router-dom';
 
 function RecipeeCard(props) {
   const location = useLocation();
+
   const { index } = props;
+
   if (location.pathname === '/foods') {
     const { meal: { strMeal, strMealThumb } } = props;
     return (

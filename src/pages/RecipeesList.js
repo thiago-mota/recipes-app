@@ -7,10 +7,11 @@ import RecipeeCard from '../components/RecipeeCard';
 import Footer from '../components/Footer';
 
 function RecipeesList() {
-  const { data, initialRender } = useContext(Context);
+  const { data, initialRender, idType, typeCheck, loading } = useContext(Context);
   const location = useLocation();
 
   useEffect(() => {
+    typeCheck(location.pathname);
     initialRender(location.pathname);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.pathname]);
@@ -18,19 +19,19 @@ function RecipeesList() {
   return (
     <div className="foods">
       <Header />
-      {data.length
+      {data && !loading
         ? (
-          <ul>
+          <ul className="recipeesList">
             {data.map(
               (meal, index) => (<RecipeeCard
-                key={ meal.idMeal }
+                key={ meal[idType] }
                 meal={ meal }
                 index={ index }
               />),
             )}
           </ul>
         )
-        : <h1>Loading</h1>}
+        : <h1>Loading...</h1>}
       <Footer />
     </div>
   );

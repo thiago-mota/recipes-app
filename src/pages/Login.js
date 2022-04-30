@@ -35,7 +35,6 @@ function Login() {
 
   useEffect(() => {
     const validateButton = () => {
-      // source: https://stackabuse.com/validate-email-addresses-with-regular-expressions-in-javascript/
       const emailRegex = /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/i;
       const minCharacters = 7;
 
