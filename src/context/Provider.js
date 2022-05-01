@@ -2,8 +2,18 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import Context from './Context';
-import { apiIngredient, apiName, apiFirstLetter } from '../services/apiFood';
-import { apiDrinkIngredient, apiDrinkName, apiDrinkFirstL } from '../services/apiDrinks';
+import {
+  apiIngredient,
+  apiName,
+  apiFirstLetter,
+  apiRecipeById,
+} from '../services/apiFood';
+import {
+  apiDrinkIngredient,
+  apiDrinkName,
+  apiDrinkFirstL,
+  apiDrinkRecipeById,
+} from '../services/apiDrinks';
 
 function Provider({ children }) {
   const [filterSearchInput, setFilterSearchInput] = useState({
@@ -13,6 +23,7 @@ function Provider({ children }) {
   });
   const [selectedRadio, setSelected] = useState();
   const [data, setData] = useState([]);
+  const [recipeDetails, setRecipeDetails] = useState({});
 
   const handleSearchInput = ({ target }) => {
     setFilterSearchInput({ searchFiltered: target.value });
@@ -103,6 +114,19 @@ function Provider({ children }) {
     }
   };
 
+  const getRecipeDetails = async (path) => {
+    const pathArray = path.split('/');
+    const id = pathArray[pathArray.length - 1];
+    if (path.includes('foods')) {
+      const apiRecipeDetails = await apiRecipeById(id);
+      setRecipeDetails(apiRecipeDetails.meals[0]);
+    }
+    if (path.includes('drinks')) {
+      const apiDrinkDetails = await apiDrinkRecipeById(id);
+      setRecipeDetails(apiDrinkDetails.drinks[0]);
+    }
+  };
+
   const contextValue = {
     handleSearchInput,
     filterSearchInput,
@@ -111,6 +135,8 @@ function Provider({ children }) {
     setSelected,
     data,
     initialRender,
+    getRecipeDetails,
+    recipeDetails,
   };
 
   return (
