@@ -5,13 +5,14 @@ import Context from '../context/Context';
 import './RecipeesList.css';
 import RecipeeCard from '../components/RecipeeCard';
 import Footer from '../components/Footer';
+import CategoriesFilter from '../components/CategoriesFilter';
 
 function RecipeesList() {
-  const { data, initialRender, idType, typeCheck, loading } = useContext(Context);
+  const {
+    data, initialRender, idType, loading } = useContext(Context);
   const location = useLocation();
 
   useEffect(() => {
-    typeCheck(location.pathname);
     initialRender(location.pathname);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.pathname]);
@@ -19,6 +20,7 @@ function RecipeesList() {
   return (
     <div className="recipes">
       <Header />
+      <CategoriesFilter />
       {data && !loading
         ? (
           <ul className="recipeesList">

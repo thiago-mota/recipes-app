@@ -21,3 +21,19 @@ export async function apiDrinkFirstL(firstLetter) {
   const result = await response.json();
   return result;
 }
+
+export async function apiDrinkCategories() {
+  const nOfCategories = 5;
+  const endpoint = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list';
+  const response = await fetch(endpoint);
+  const result = await response.json();
+  const slicedArray = result.drinks.slice(0, nOfCategories);
+  return slicedArray;
+}
+
+export async function apiDrinksByCategory(category) {
+  const endpoint = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${category}`;
+  const response = await fetch(endpoint);
+  const result = await response.json();
+  return result.drinks;
+}
