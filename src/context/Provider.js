@@ -73,19 +73,20 @@ function Provider({ children }) {
     typeCheck(location.pathname);
   };
 
-  const handleSearchByCategory = async ({ target }) => {    
-    if (target.innerText === selectedCategory) {
-      setSelectedCategory('ALL');
+  const handleSearchByCategory = async ({ target }) => {
+    if (target.innerText !== selectedCategory) {
+      setSelectedCategory(target.innerText);
+      setSearchByCategory(true);
+      if (location.pathname === '/foods') {
+        const meals = await apiMealsByCategory(target.innerText);
+        setData(trimArray(meals));
+      } else if (location.pathname === '/drinks') {
+        const drinks = await apiDrinksByCategory(target.innerText);
+        setData(trimArray(drinks));
+      }
+    } if (target.innerText === selectedCategory) {
+      setSelectedCategory('');
       initialRender(location.pathname);
-    }
-    console.log(location.pathname);
-    if (location.pathname === '/foods') {
-      console.log(target.innerText);
-      const meals = await apiMealsByCategory(target.innerText);
-      setData(trimArray(meals));
-    } else if (location.pathname === '/drinks') {
-      const drinks = await apiDrinksByCategory(target.innerText);
-      setData(trimArray(drinks));
     }
     setSelectedCategory(target.innerText);
     setSearchByCategory(true);

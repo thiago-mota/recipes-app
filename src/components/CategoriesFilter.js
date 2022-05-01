@@ -36,6 +36,7 @@ function CategoriesFilter() {
 
   useEffect(() => {
     colorSelected();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loading]);
 
   return (
