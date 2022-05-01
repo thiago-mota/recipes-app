@@ -85,7 +85,6 @@ function Provider({ children }) {
         setData(trimArray(drinks));
       }
     } if (target.innerText === selectedCategory) {
-      setSelectedCategory('');
       initialRender(location.pathname);
     }
     setSelectedCategory(target.innerText);
@@ -97,7 +96,6 @@ function Provider({ children }) {
     setLoading(true);
     const returnApi = await api(input);
     const returnArray = await returnApi;
-    console.log(returnArray);
     if (!returnArray) {
       return global.alert(alert);
     }
@@ -109,7 +107,6 @@ function Provider({ children }) {
     if (selectedRadio === 'ingredient-search-radio' && filterSearchInput) {
       const returnApi = await apiIngredient(filterSearchInput);
       if (!returnApi) {
-        initialRender('/foods');
         return global.alert(alert);
       }
       setData(trimArray(returnApi));
@@ -118,7 +115,6 @@ function Provider({ children }) {
     if (selectedRadio === 'name-search-radio' && filterSearchInput) {
       const returnApi = await apiName(filterSearchInput);
       if (!returnApi) {
-        initialRender('/foods');
         return global.alert(alert);
       }
       setData(trimArray(returnApi));

@@ -7,14 +7,26 @@
   text-align: center;
 }
 
-.login-scren h1 {
+.login-screen h1 {
   align-self: center;
+  font-size: 35px;
+  font-weight: 400;
   letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.login-screen h2 {
+  align-self: center;
+  font-size: 25px;
+  font-weight: 100;
+  text-transform: uppercase;
 }
 
 .login-screen form {
   display: flex;
   flex-direction: column;
+  height: 30%;
+  justify-content: space-between;
   margin: 0;
   text-align: center;
 }
@@ -30,18 +42,19 @@
 
 .login-screen button {
   align-self: center;
-  background: #6ce34f;
+  /* background-color: rgb(235, 223, 49); */
+  background-color: #6CE34F;
   border-style: none;
   box-shadow: 1px 1px 0 0 , 2px 2px 0 0 , 3px 3px 0 0 , 4px 4px 0 0;
   height: 58px;
   margin-top: 20px;
+  transition: background-color 0.25s;
   width: 290px;
 }
 
 .login-screen button:disabled {
-  background: #6ce34f;
+  /* background-color: rgba(235, 223, 49, 0.397); */
+  background-color: #6de34f79;
   border-style: none;
-  height: 58px;
-  margin-top: 20px;
-  width: 290px;
+  transition: background-color 0.25s;
 }

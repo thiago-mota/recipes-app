@@ -18,7 +18,7 @@ function RecipeesList() {
   }, [location.pathname]);
 
   return (
-    <div className="recipes">
+    <div className="recipes polka">
       <Header />
       <CategoriesFilter />
       {!loading

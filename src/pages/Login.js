@@ -49,10 +49,10 @@ function Login() {
   return (
 
     <div className="login-screen">
-      <h1>Login</h1>
-      <form
-        onSubmit={ handleSubmit }
-      >
+      <h1>App de Receitas</h1>
+
+      <form>
+        <h2>Login</h2>
         <input
           data-testid="email-input"
           placeholder="Email"
@@ -69,14 +69,16 @@ function Login() {
           value={ password }
           onChange={ handleOnChange }
         />
-        <button
-          data-testid="login-submit-btn"
-          type="submit"
-          disabled={ disabled }
-        >
-          Enter
-        </button>
       </form>
+      <button
+        onClick={ handleSubmit }
+        data-testid="login-submit-btn"
+        type="submit"
+        disabled={ disabled }
+      >
+        Enter
+      </button>
+
     </div>
 
   );
