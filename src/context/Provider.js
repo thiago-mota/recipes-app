@@ -20,7 +20,7 @@ function Provider({ children }) {
   const [idType, setIdType] = useState('idMeal');
   const [categories, setCategories] = useState([]);
   const [searchByCategory, setSearchByCategory] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('ALL');
 
   const history = useHistory();
   const location = useLocation();
@@ -58,8 +58,6 @@ function Provider({ children }) {
       const drinkCategories = await apiDrinkCategories();
       setCategories(drinkCategories);
     }
-    typeCheck();
-    // setLoading(false);
   };
 
   const initialRender = async (foodOrDrink) => {
@@ -72,11 +70,13 @@ function Provider({ children }) {
       const slicedArray = returnApi.drinks.slice(0, nOfRecipees);
       setData(slicedArray);
     }
+    setSelectedCategory('ALL');
     setSearchByCategory(false);
     typeCheck(location.pathname);
   };
 
   const handleSearchByCategory = async ({ target }) => {
+    setLoading(true);
     if (target.innerText !== selectedCategory) {
       setSelectedCategory(target.innerText);
       setSearchByCategory(true);
@@ -88,9 +88,10 @@ function Provider({ children }) {
         setData(trimArray(drinks));
       }
     } if (target.innerText === selectedCategory) {
-      setSelectedCategory('');
+      setSelectedCategory('ALL');
       initialRender(location.pathname);
     }
+    typeCheck(location.pathname);
   };
 
   async function searchHelper(input, api) {
@@ -132,6 +133,7 @@ function Provider({ children }) {
     if (!selectedRadio || !filterSearchInput) {
       return global.alert('Preencha corretamente os critérios da busca');
     }
+    typeCheck(location.pathname);
   };
 
   const searchDrinkApi = async () => {
@@ -162,15 +164,18 @@ function Provider({ children }) {
     if (!selectedRadio || !filterSearchInput) {
       return global.alert('Preencha corretamente os critérios da busca');
     }
+    typeCheck(location.pathname);
   };
 
   const handleClickSearch = (searchType) => {
     setSearchByCategory(false);
     if (searchType === '/foods') {
       searchFoodApi();
+      setSelectedCategory('');
     }
     if (searchType === '/drinks') {
       searchDrinkApi();
+      setSelectedCategory('');
     }
   };
 
@@ -210,6 +215,8 @@ function Provider({ children }) {
     categories,
     handleSearchByCategory,
     setSearchByCategory,
+    setSelectedCategory,
+    selectedCategory,
   };
 
   return (

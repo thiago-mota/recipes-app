@@ -21,7 +21,7 @@ function RecipeesList() {
     <div className="recipes">
       <Header />
       <CategoriesFilter />
-      {data && !loading
+      {!loading
         ? (
           <ul className="recipeesList">
             {data.map(
