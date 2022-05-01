@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import './Login.css';
-import rockGlass from '../images/rockGlass.svg';
 
 function Login() {
   const [disabled, setDisabled] = useState(false);
@@ -49,18 +48,11 @@ function Login() {
   }, [user, password]);
   return (
 
-    <div>
-      <object
-        className="rocksGlass"
-        type="image/svg+xml"
-        data={ rockGlass }
-      >
-        Glass
-      </object>
+    <div className="login-screen">
+      <h1>Login</h1>
       <form
         onSubmit={ handleSubmit }
       >
-        <h1>Login</h1>
         <input
           data-testid="email-input"
           placeholder="Email"

@@ -1,34 +1,47 @@
-.rocksGlass {
-  width: 100px;
-}
-
-form {
+.login-screen {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  font-family: Open Sans , sans-serif;
+  height: 600px;
+  justify-content: space-evenly;
+  text-align: center;
 }
 
-h1 {
+.login-scren h1 {
   align-self: center;
+  letter-spacing: 1px;
 }
 
-form input {
+.login-screen form {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  text-align: center;
+}
+
+.login-screen input {
+  align-self: center;
+  border: 2px solid;
+  box-shadow: 1px 1px 0 0 , 2px 2px 0 0 , 3px 3px 0 0 , 4px 4px 0 0;
   height: 58px;
   margin-top: 10px;
   width: 290px;
 }
 
-form button {
+.login-screen button {
+  align-self: center;
   background: #6ce34f;
   border-style: none;
+  box-shadow: 1px 1px 0 0 , 2px 2px 0 0 , 3px 3px 0 0 , 4px 4px 0 0;
   height: 58px;
   margin-top: 20px;
   width: 290px;
 }
 
-div {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  margin: 20px;
+.login-screen button:disabled {
+  background: #6ce34f;
+  border-style: none;
+  height: 58px;
+  margin-top: 20px;
+  width: 290px;
 }

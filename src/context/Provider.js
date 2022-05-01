@@ -61,46 +61,47 @@ function Provider({ children }) {
   };
 
   const initialRender = async (foodOrDrink) => {
-    const nOfRecipees = 12;
     if (foodOrDrink === '/foods') {
       const returnApi = await apiName('');
       setData(trimArray(returnApi));
     } else if (foodOrDrink === '/drinks') {
       const returnApi = await apiDrinkName('');
-      const slicedArray = returnApi.drinks.slice(0, nOfRecipees);
-      setData(slicedArray);
+      setData(trimArray(returnApi));
     }
     setSelectedCategory('ALL');
     setSearchByCategory(false);
     typeCheck(location.pathname);
   };
 
-  const handleSearchByCategory = async ({ target }) => {
-    setLoading(true);
-    if (target.innerText !== selectedCategory) {
-      setSelectedCategory(target.innerText);
-      setSearchByCategory(true);
-      if (location.pathname === '/foods') {
-        const meals = await apiMealsByCategory(target.innerText);
-        setData(trimArray(meals));
-      } else if (location.pathname === '/drinks') {
-        const drinks = await apiDrinksByCategory(target.innerText);
-        setData(trimArray(drinks));
-      }
-    } if (target.innerText === selectedCategory) {
+  const handleSearchByCategory = async ({ target }) => {    
+    if (target.innerText === selectedCategory) {
       setSelectedCategory('ALL');
       initialRender(location.pathname);
     }
+    console.log(location.pathname);
+    if (location.pathname === '/foods') {
+      console.log(target.innerText);
+      const meals = await apiMealsByCategory(target.innerText);
+      setData(trimArray(meals));
+    } else if (location.pathname === '/drinks') {
+      const drinks = await apiDrinksByCategory(target.innerText);
+      setData(trimArray(drinks));
+    }
+    setSelectedCategory(target.innerText);
+    setSearchByCategory(true);
     typeCheck(location.pathname);
   };
 
   async function searchHelper(input, api) {
+    setLoading(true);
     const returnApi = await api(input);
     const returnArray = await returnApi;
+    console.log(returnArray);
     if (!returnArray) {
       return global.alert(alert);
     }
     setData(trimArray(returnArray));
+    typeCheck(location.pathname);
   }
 
   const searchFoodApi = async () => {
@@ -139,20 +140,17 @@ function Provider({ children }) {
   const searchDrinkApi = async () => {
     if (selectedRadio === 'ingredient-search-radio' && filterSearchInput) {
       const returnApi = await apiDrinkIngredient(filterSearchInput);
-      const returnArray = await returnApi.drinks;
-      if (!returnArray) {
+      if (!returnApi) {
         return global.alert(alert);
       }
-      setData(returnApi.drinks);
+      setData(trimArray(returnApi));
     }
     if (selectedRadio === 'name-search-radio' && filterSearchInput) {
       const returnApi = await apiDrinkName(filterSearchInput);
-      const returnArray = await returnApi.drinks;
-      if (!returnArray) {
+      if (!returnApi) {
         return global.alert(alert);
       }
-      const drinks = trimArray(returnArray);
-      setData(drinks);
+      setData(trimArray(returnApi));
     }
     if (selectedRadio === 'first-letter-search-radio' && filterSearchInput) {
       if (filterSearchInput.length === 1) {
