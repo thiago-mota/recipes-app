@@ -24,6 +24,7 @@ function Provider({ children }) {
   const [selectedRadio, setSelected] = useState();
   const [data, setData] = useState([]);
   const [recipeDetails, setRecipeDetails] = useState({});
+  const [recommendations, setRecommendations] = useState([]);
 
   const handleSearchInput = ({ target }) => {
     setFilterSearchInput({ searchFiltered: target.value });
@@ -127,6 +128,20 @@ function Provider({ children }) {
     }
   };
 
+  const getRecommendations = async (path) => {
+    const numberOfRecommendation = 6;
+    if (path.includes('foods')) {
+      const apiDrinks = await apiDrinkName('');
+      const slicedDrinks = apiDrinks.drinks.slice(0, numberOfRecommendation);
+      setRecommendations(slicedDrinks);
+    }
+    if (path.includes('drinks')) {
+      const apiFoods = await apiName('');
+      const slicedFoods = apiFoods.meals.slice(0, numberOfRecommendation);
+      setRecommendations(slicedFoods);
+    }
+  };
+
   const contextValue = {
     handleSearchInput,
     filterSearchInput,
@@ -137,6 +152,8 @@ function Provider({ children }) {
     initialRender,
     getRecipeDetails,
     recipeDetails,
+    getRecommendations,
+    recommendations,
   };
 
   return (

@@ -4,13 +4,19 @@ import PropTypes from 'prop-types';
 import Context from '../context/Context';
 
 function RecipeDetails() {
-  const { getRecipeDetails, recipeDetails } = useContext(Context);
+  const {
+    getRecipeDetails,
+    recipeDetails,
+    getRecommendations,
+    recommendations,
+  } = useContext(Context);
   const location = useLocation();
-  const index = 0;
 
   useEffect(() => {
     getRecipeDetails(location.pathname);
-  }, [location.pathname, getRecipeDetails]);
+    getRecommendations(location.pathname);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location.pathname]);
 
   const filterIngredients = () => {
     // https://masteringjs.io/tutorials/fundamentals/filter-key#:~:text=JavaScript%20objects%20don't%20have,()%20function%20as%20shown%20below.
@@ -28,6 +34,48 @@ function RecipeDetails() {
     ));
   };
 
+  const recommendationFoodCard = () => recommendations
+    .map((recomendation, index) => (
+      <div key={ index } data-testid={ `${index}-recomendation-card` }>
+        <img
+          src={ recomendation.strMealThumb }
+          alt="recipe_photo"
+          data-testid={ `${index}-recomendation-photo` }
+        />
+        <title
+          data-testid={ `${index}-recomendation-title` }
+        >
+          { recomendation.strMeal }
+        </title>
+        <span
+          data-testid={ `${index}-recomendation-category` }
+        >
+          {recomendation.strCategory}
+        </span>
+      </div>
+    ));
+
+  const recommendationDrinkCard = () => recommendations
+    .map((recomendation, index) => (
+      <div key={ index } data-testid={ `${index}-recomendation-card` }>
+        <img
+          src={ recomendation.strDrinkThumb }
+          alt="recipe_photo"
+          data-testid={ `${index}-recomendation-photo` }
+        />
+        <title
+          data-testid={ `${index}-recomendation-title` }
+        >
+          { recomendation.strDrink }
+        </title>
+        <span
+          data-testid={ `${index}-recomendation-category` }
+        >
+          {recomendation.strCategory}
+        </span>
+      </div>
+    ));
+
   const renderFood = () => (
     <div>
       <img
@@ -42,7 +90,7 @@ function RecipeDetails() {
       { filterIngredients() }
       <span data-testid="instructions">{recipeDetails.strInstructions}</span>
       <iframe title="recipe_video" data-testid="video">{recipeDetails.strYoutube}</iframe>
-      <div data-testid={ `${index}-recomendation-card` }>recomendados</div>
+      { recommendationDrinkCard() }
       <button type="button" data-testid="start-recipe-btn">iniciar</button>
     </div>
   );
@@ -61,7 +109,7 @@ function RecipeDetails() {
       { filterIngredients() }
       <span data-testid="instructions">{recipeDetails.strInstructions}</span>
       <iframe title="recipe_video" data-testid="video">{recipeDetails.strYoutube}</iframe>
-      <div data-testid={ `${index}-recomendation-card` }>recomendados</div>
+      { recommendationFoodCard() }
       <button type="button" data-testid="start-recipe-btn">iniciar</button>
     </div>
   );
