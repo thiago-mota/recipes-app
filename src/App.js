@@ -8,6 +8,7 @@ import RecipeesList from './pages/RecipeesList';
 import Explore from './pages/Explore';
 import ExploreFoods from './pages/ExploreFoods';
 import ExploreDrinks from './pages/ExploreDrinks';
+import Profile from './pages/Profile';
 
 function App() {
   return (
@@ -44,6 +45,11 @@ function App() {
             exact
             path="/explore/drinks"
             component={ ExploreDrinks }
+          />
+          <Route
+            exact
+            path="/profile"
+            component={ Profile }
           />
         </Switch>
       </Provider>
