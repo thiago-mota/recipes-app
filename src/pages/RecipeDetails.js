@@ -2,19 +2,17 @@ import React, { useEffect, useContext } from 'react';
 import { useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Context from '../context/Context';
+import RecomendationCard from '../components/RecommendationCard';
 
 function RecipeDetails() {
   const {
     getRecipeDetails,
     recipeDetails,
-    getRecommendations,
-    recommendations,
   } = useContext(Context);
   const location = useLocation();
 
   useEffect(() => {
     getRecipeDetails(location.pathname);
-    getRecommendations(location.pathname);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.pathname]);
 
@@ -34,48 +32,6 @@ function RecipeDetails() {
     ));
   };
 
-  const recommendationFoodCard = () => recommendations
-    .map((recomendation, index) => (
-      <div key={ index } data-testid={ `${index}-recomendation-card` }>
-        <img
-          src={ recomendation.strMealThumb }
-          alt="recipe_photo"
-          data-testid={ `${index}-recomendation-photo` }
-        />
-        <title
-          data-testid={ `${index}-recomendation-title` }
-        >
-          { recomendation.strMeal }
-        </title>
-        <span
-          data-testid={ `${index}-recomendation-category` }
-        >
-          {recomendation.strCategory}
-        </span>
-      </div>
-    ));
-
-  const recommendationDrinkCard = () => recommendations
-    .map((recomendation, index) => (
-      <div key={ index } data-testid={ `${index}-recomendation-card` }>
-        <img
-          src={ recomendation.strDrinkThumb }
-          alt="recipe_photo"
-          data-testid={ `${index}-recomendation-photo` }
-        />
-        <title
-          data-testid={ `${index}-recomendation-title` }
-        >
-          { recomendation.strDrink }
-        </title>
-        <span
-          data-testid={ `${index}-recomendation-category` }
-        >
-          {recomendation.strCategory}
-        </span>
-      </div>
-    ));
-
   const renderFood = () => (
     <div>
       <img
@@ -90,7 +46,7 @@ function RecipeDetails() {
       { filterIngredients() }
       <span data-testid="instructions">{recipeDetails.strInstructions}</span>
       <iframe title="recipe_video" data-testid="video">{recipeDetails.strYoutube}</iframe>
-      { recommendationDrinkCard() }
+      <RecomendationCard />
       <button type="button" data-testid="start-recipe-btn">iniciar</button>
     </div>
   );
@@ -109,7 +65,7 @@ function RecipeDetails() {
       { filterIngredients() }
       <span data-testid="instructions">{recipeDetails.strInstructions}</span>
       <iframe title="recipe_video" data-testid="video">{recipeDetails.strYoutube}</iframe>
-      { recommendationFoodCard() }
+      <RecomendationCard />
       <button type="button" data-testid="start-recipe-btn">iniciar</button>
     </div>
   );
