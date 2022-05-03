@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Context from '../context/Context';
 import RecomendationCard from '../components/RecommendationCard';
+import './RecipeDetails.css';
 
 function RecipeDetails() {
   const {
@@ -46,7 +47,7 @@ function RecipeDetails() {
       { filterIngredients() }
       <span data-testid="instructions">{recipeDetails.strInstructions}</span>
       <iframe title="recipe_video" data-testid="video">{recipeDetails.strYoutube}</iframe>
-      <RecomendationCard />
+      <div className="horizontalScroll"><RecomendationCard /></div>
       <button type="button" data-testid="start-recipe-btn">iniciar</button>
     </div>
   );
@@ -65,7 +66,7 @@ function RecipeDetails() {
       { filterIngredients() }
       <span data-testid="instructions">{recipeDetails.strInstructions}</span>
       <iframe title="recipe_video" data-testid="video">{recipeDetails.strYoutube}</iframe>
-      <RecomendationCard />
+      <div className="horizontalScroll"><RecomendationCard /></div>
       <button type="button" data-testid="start-recipe-btn">iniciar</button>
     </div>
   );
