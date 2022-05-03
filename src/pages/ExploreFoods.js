@@ -7,7 +7,7 @@ function ExploreFoods() {
   const history = useHistory();
   return (
     <div>
-      <Header />
+      <Header title="Explore Foods" />
       <button
         type="button"
         data-testid="explore-by-ingredient"
