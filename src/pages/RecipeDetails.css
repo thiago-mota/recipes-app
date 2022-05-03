@@ -4,3 +4,9 @@
   flex-direction: row;
   width: 360px;
 }
+
+.btnStartRecipe {
+  bottom: 0;
+  position: fixed;
+  background-color:rgb(20, 209, 20);
+}

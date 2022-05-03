@@ -48,7 +48,13 @@ function RecipeDetails() {
       <span data-testid="instructions">{recipeDetails.strInstructions}</span>
       <iframe title="recipe_video" data-testid="video">{recipeDetails.strYoutube}</iframe>
       <div className="horizontalScroll"><RecomendationCard /></div>
-      <button type="button" data-testid="start-recipe-btn">iniciar</button>
+      <button
+        type="button"
+        data-testid="start-recipe-btn"
+        className="btnStartRecipe"
+      >
+        Start Recipe
+      </button>
     </div>
   );
 
@@ -67,7 +73,13 @@ function RecipeDetails() {
       <span data-testid="instructions">{recipeDetails.strInstructions}</span>
       <iframe title="recipe_video" data-testid="video">{recipeDetails.strYoutube}</iframe>
       <div className="horizontalScroll"><RecomendationCard /></div>
-      <button type="button" data-testid="start-recipe-btn">iniciar</button>
+      <button
+        type="button"
+        data-testid="start-recipe-btn"
+        className="btnStartRecipe"
+      >
+        Start Recipe
+      </button>
     </div>
   );
 
