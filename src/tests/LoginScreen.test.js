@@ -11,8 +11,9 @@ const EMAIL = 'email@mail.com';
 const INVALID_EMAIL = 'email@';
 const PASSWORD = '0123456789';
 const INVALID_PASSWORD = '01234';
-// const MEALS_TOKEN = 'mealsToken';
-// const COCKTAILS_TOKEN = 'cocktailsToken';
+const MEALS_TOKEN = 'mealsToken';
+const COCKTAILS_TOKEN = 'cocktailsToken';
+const USER_TOKEN = 'user';
 
 describe('Testa os se os inputs possuem os atributos descritos no protótipo', () => {
   it('Testa se o input de email possui o atributo data-testid="email-input"', () => {
@@ -91,39 +92,42 @@ describe('Testa a validação do formulário', () => {
   });
 });
 
-// describe('Testa se mealsToken e cocktailsToken são salvos no localStorage', () => {
-//   it('Testa se após a submissão os tokens estão salvos no localStorage', () => {
-//     renderWithRouter(<Login />);
+describe('Testa se mealsToken e cocktailsToken são salvos no localStorage', () => {
+  it('Testa se após a submissão os tokens estão salvos no localStorage', () => {
+    renderWithRouter(<Login />);
 
-//     const emailInput = screen.getByTestId(EMAIL_INPUT_TESTID);
-//     const passwordInput = screen.getByTestId(PASSWORD_INPUT_TESTID);
-//     const enterButton = screen.getByTestId(ENTER_BTN_TESTID);
-//     const localStorageMeals = localStorage.getItem(MEALS_TOKEN);
-//     const localStorageCocktails = localStorage.getItem(COCKTAILS_TOKEN);
+    const emailInput = screen.getByTestId(EMAIL_INPUT_TESTID);
+    const passwordInput = screen.getByTestId(PASSWORD_INPUT_TESTID);
+    const enterButton = screen.getByTestId(ENTER_BTN_TESTID);
 
-//     userEvent.type(emailInput, EMAIL);
-//     userEvent.type(passwordInput, PASSWORD);
-//     userEvent.click(enterButton);
+    userEvent.type(emailInput, EMAIL);
+    userEvent.type(passwordInput, PASSWORD);
+    userEvent.click(enterButton);
 
-//     expect(localStorageMeals && localStorageCocktails).toBe('1');
-//   });
-// });
+    const localStorageMeals = localStorage.getItem(MEALS_TOKEN);
+    const localStorageCocktails = localStorage.getItem(COCKTAILS_TOKEN);
 
-// describe('Testa se após submissão o e-mail do usuário é salvo no localStorage', () => {
-//   it('Testa se o email do usuário é salvo na chave user', () => {
-//     const { history } = renderWithRouter(<Login />);
+    expect(localStorageMeals && localStorageCocktails).toBe('1');
+  });
+});
 
-//     const emailInput = screen.getByTestId(EMAIL_INPUT_TESTID);
-//     const passwordInput = screen.getByTestId(PASSWORD_INPUT_TESTID);
-//     const enterButton = screen.getByTestId(ENTER_BTN_TESTID);
+describe('Testa se após submissão o e-mail do usuário é salvo no localStorage', () => {
+  it('Testa se o email do usuário é salvo na chave user', () => {
+    renderWithRouter(<Login />);
 
-//     userEvent.type(emailInput, EMAIL);
-//     userEvent.type(passwordInput, PASSWORD);
-//     userEvent.click(enterButton);
+    const emailInput = screen.getByTestId(EMAIL_INPUT_TESTID);
+    const passwordInput = screen.getByTestId(PASSWORD_INPUT_TESTID);
+    const enterButton = screen.getByTestId(ENTER_BTN_TESTID);
 
-//     expect(history.location.pathname).not.toBe('/foods');
-//   });
-// });
+    userEvent.type(emailInput, EMAIL);
+    userEvent.type(passwordInput, PASSWORD);
+    userEvent.click(enterButton);
+
+    const localStorageUser = localStorage.getItem(USER_TOKEN);
+
+    expect(localStorageUser).toBeDefined();
+  });
+});
 
 describe('Testa se o usuário é redirecionado após login bem sucedido', () => {
   it('Testa se a rota muda para a tela principal de receitas', () => {
