@@ -1,6 +1,5 @@
 import React, { useEffect, useContext } from 'react';
-import { useLocation } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import { Link, useLocation } from 'react-router-dom';
 import Context from '../context/Context';
 import RecomendationCard from '../components/RecommendationCard';
 import './RecipeDetails.css';
@@ -9,6 +8,8 @@ function RecipeDetails() {
   const {
     getRecipeDetails,
     recipeDetails,
+    startRecipe,
+    buttonName,
   } = useContext(Context);
   const location = useLocation();
 
@@ -46,15 +47,28 @@ function RecipeDetails() {
       <span data-testid="recipe-category">{recipeDetails.strCategory}</span>
       { filterIngredients() }
       <span data-testid="instructions">{recipeDetails.strInstructions}</span>
-      <iframe title="recipe_video" data-testid="video">{recipeDetails.strYoutube}</iframe>
-      <div className="horizontalScroll"><RecomendationCard /></div>
-      <button
-        type="button"
-        data-testid="start-recipe-btn"
-        className="btnStartRecipe"
+      <iframe
+        title="recipe_video"
+        data-testid="video"
+        width="100%"
+        height="280"
       >
-        Start Recipe
-      </button>
+        {recipeDetails.strYoutube}
+      </iframe>
+      <div className="horizontalScroll"><RecomendationCard /></div>
+      { startRecipe
+        && (
+          <div>
+            <Link to={ `/foods/${recipeDetails.idMeal}/in-progress` }>
+              <button
+                type="button"
+                data-testid="start-recipe-btn"
+                className="btnStartRecipe"
+              >
+                { buttonName }
+              </button>
+            </Link>
+          </div>)}
     </div>
   );
 
@@ -73,13 +87,19 @@ function RecipeDetails() {
       <span data-testid="instructions">{recipeDetails.strInstructions}</span>
       <iframe title="recipe_video" data-testid="video">{recipeDetails.strYoutube}</iframe>
       <div className="horizontalScroll"><RecomendationCard /></div>
-      <button
-        type="button"
-        data-testid="start-recipe-btn"
-        className="btnStartRecipe"
-      >
-        Start Recipe
-      </button>
+      { startRecipe
+        && (
+          <div>
+            <Link to={ `/drinks/${recipeDetails.idDrink}/in-progress` }>
+              <button
+                type="button"
+                data-testid="start-recipe-btn"
+                className="btnStartRecipe"
+              >
+                { buttonName }
+              </button>
+            </Link>
+          </div>)}
     </div>
   );
 
@@ -87,9 +107,5 @@ function RecipeDetails() {
     location.pathname.includes('foods') ? renderFood() : renderDrink()
   );
 }
-
-RecipeDetails.propTypes = {
-  index: PropTypes.number.isRequired,
-};
 
 export default RecipeDetails;

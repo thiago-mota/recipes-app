@@ -62,6 +62,10 @@ function App() {
             path="/profile"
             component={ Profile }
           />
+          <Route
+            path="/drinks/:id/in-progress"
+            // component={ ReceitasEmProgresso }
+          />
         </Switch>
       </Provider>
     </BrowserRouter>

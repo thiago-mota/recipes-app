@@ -31,6 +31,8 @@ function Provider({ children }) {
   const [categories, setCategories] = useState([]);
   const [searchByCategory, setSearchByCategory] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState('ALL');
+  const [startRecipe, setStartRecipe] = useState(true);
+  const [buttonName, setButtonName] = useState('Start Recipe');
 
   const history = useHistory();
   const location = useLocation();
@@ -206,16 +208,51 @@ function Provider({ children }) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, location.pathname]);
 
+  const startRecipeState = (recipeDetail) => {
+    const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
+    if (doneRecipes) {
+      const foundDoneRecipe = doneRecipes.find((doneRecipe) => (
+        doneRecipe.id === recipeDetail.idMeal || doneRecipe.id === recipeDetail.idDrink
+      ));
+      if (foundDoneRecipe) {
+        setStartRecipe(false);
+      } if (!foundDoneRecipe) {
+        setStartRecipe(true);
+      }
+    }
+  };
+
+  const continueRecipeState = (recipeDetail, path) => {
+    const inProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    if (inProgressRecipes) {
+      let foundInProgressRecipe;
+      if (path.includes('foods')) {
+        foundInProgressRecipe = inProgressRecipes.meals[recipeDetail.idMeal];
+      } if (path.includes('drinks')) {
+        foundInProgressRecipe = inProgressRecipes.cocktails[recipeDetail.idDrink];
+      }
+      if (foundInProgressRecipe) {
+        setButtonName('Continue Recipe');
+      } if (!foundInProgressRecipe) {
+        setButtonName('Start Recipe');
+      }
+    }
+  };
+
   const getRecipeDetails = async (path) => {
     const pathArray = path.split('/');
     const id = pathArray[pathArray.length - 1];
     if (path.includes('foods')) {
       const apiRecipeDetails = await apiRecipeById(id);
       setRecipeDetails(apiRecipeDetails.meals[0]);
+      startRecipeState(apiRecipeDetails.meals[0]);
+      continueRecipeState(apiRecipeDetails.meals[0], path);
     }
     if (path.includes('drinks')) {
       const apiDrinkDetails = await apiDrinkRecipeById(id);
       setRecipeDetails(apiDrinkDetails.drinks[0]);
+      startRecipeState(apiDrinkDetails.drinks[0]);
+      continueRecipeState(apiDrinkDetails.drinks[0], path);
     }
   };
 
@@ -253,6 +290,8 @@ function Provider({ children }) {
     setSearchByCategory,
     setSelectedCategory,
     selectedCategory,
+    startRecipe,
+    buttonName,
   };
 
   return (
