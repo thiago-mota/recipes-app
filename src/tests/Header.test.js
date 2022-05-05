@@ -3,7 +3,6 @@ import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../renderWithRouter';
 import Header from '../components/Header';
-// import Login from '../pages/Login';
 import App from '../App';
 
 const TOP_BTN_TESTID = 'profile-top-btn';
@@ -41,12 +40,6 @@ describe('Testa se os elementos do header respeitam os atributos descritos', () 
     expect(searchTopBtn).toBeInTheDocument();
   });
 });
-
-// describe('', () => {
-//   it('', () => {
-
-//   });
-// });
 
 describe('Testa se a pessoa usuária é redirecionada ao clicar no botão de perfil', () => {
   it('Testa se é redirecionada para a rota /profile', () => {
@@ -108,9 +101,3 @@ describe('Testa se ao clicar no botão de busca a searchbar é exibida/ocultada'
     expect(execSearchBtn).not.toBeInTheDocument();
   });
 });
-
-// describe('', () => {
-//   it('', () => {
-
-//   });
-// });
