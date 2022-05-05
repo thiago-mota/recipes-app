@@ -5,9 +5,11 @@ import Context from '../context/Context';
 import './RecipeesList.css';
 import RecipeeCard from '../components/RecipeeCard';
 import Footer from '../components/Footer';
+import CategoriesFilter from '../components/CategoriesFilter';
 
 function RecipeesList() {
-  const { data, initialRender } = useContext(Context);
+  const {
+    data, initialRender, idType, loading } = useContext(Context);
   const location = useLocation();
 
   useEffect(() => {
@@ -16,21 +18,22 @@ function RecipeesList() {
   }, [location.pathname]);
 
   return (
-    <div className="foods">
+    <div className="recipes polka">
       <Header />
-      {data.length
+      <CategoriesFilter />
+      {!loading
         ? (
-          <ul>
+          <ul className="recipeesList">
             {data.map(
               (meal, index) => (<RecipeeCard
-                key={ meal.idMeal }
+                key={ meal[idType] }
                 meal={ meal }
                 index={ index }
               />),
             )}
           </ul>
         )
-        : <h1>Loading</h1>}
+        : <h1>Loading...</h1>}
       <Footer />
     </div>
   );

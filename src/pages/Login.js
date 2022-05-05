@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import './Login.css';
-import rockGlass from '../images/rockGlass.svg';
 
 function Login() {
   const [disabled, setDisabled] = useState(false);
@@ -35,7 +34,6 @@ function Login() {
 
   useEffect(() => {
     const validateButton = () => {
-      // source: https://stackabuse.com/validate-email-addresses-with-regular-expressions-in-javascript/
       const emailRegex = /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/i;
       const minCharacters = 7;
 
@@ -50,18 +48,11 @@ function Login() {
   }, [user, password]);
   return (
 
-    <div>
-      <object
-        className="rocksGlass"
-        type="image/svg+xml"
-        data={ rockGlass }
-      >
-        Glass
-      </object>
-      <form
-        onSubmit={ handleSubmit }
-      >
-        <h1>Login</h1>
+    <div className="login-screen">
+      <h1>App de Receitas</h1>
+
+      <form>
+        <h2>Login</h2>
         <input
           data-testid="email-input"
           placeholder="Email"
@@ -78,14 +69,16 @@ function Login() {
           value={ password }
           onChange={ handleOnChange }
         />
-        <button
-          data-testid="login-submit-btn"
-          type="submit"
-          disabled={ disabled }
-        >
-          Enter
-        </button>
       </form>
+      <button
+        onClick={ handleSubmit }
+        data-testid="login-submit-btn"
+        type="submit"
+        disabled={ disabled }
+      >
+        Enter
+      </button>
+
     </div>
 
   );

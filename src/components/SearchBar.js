@@ -4,7 +4,7 @@ import Context from '../context/Context';
 
 function SearchBar() {
   const { handleSearchInput, selectedRadio, setSelected,
-    handleClickSearch } = useContext(Context);
+    handleClickSearch, filterSearchInput } = useContext(Context);
   const location = useLocation();
 
   return (
@@ -18,6 +18,7 @@ function SearchBar() {
             name="search-input"
             placeholder="Search Recipe"
             onChange={ handleSearchInput }
+            value={ filterSearchInput }
           />
         </label>
         <label htmlFor="ingredient-search-radio">

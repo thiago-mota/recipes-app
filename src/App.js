@@ -5,9 +5,11 @@ import { Switch, Route } from 'react-router-dom';
 import Provider from './context/Provider';
 import Login from './pages/Login';
 import RecipeesList from './pages/RecipeesList';
+import RecipeDetails from './pages/RecipeDetails';
 import Explore from './pages/Explore';
 import ExploreFoods from './pages/ExploreFoods';
 import ExploreDrinks from './pages/ExploreDrinks';
+import Profile from './pages/Profile';
 
 function App() {
   return (
@@ -42,6 +44,25 @@ function App() {
           exact
           path="/explore/drinks"
           component={ ExploreDrinks }
+        />
+        <Route
+          exact
+          path="/foods/:id"
+          component={ RecipeDetails }
+        />
+        <Route
+          exact
+          path="/drinks/:id"
+          component={ RecipeDetails }
+        />
+        <Route
+          exact
+          path="/profile"
+          component={ Profile }
+        />
+        <Route
+          path="/drinks/:id/in-progress"
+          // component={ ReceitasEmProgresso }
         />
       </Switch>
     </Provider>

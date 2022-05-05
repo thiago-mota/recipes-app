@@ -1,34 +1,58 @@
-.rocksGlass {
-  width: 100px;
-}
-
-form {
+.login-screen {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  font-family: Open Sans , sans-serif;
+  height: 600px;
+  justify-content: space-evenly;
+  text-align: center;
 }
 
-h1 {
+.login-screen h1 {
   align-self: center;
+  font-size: 36px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
-form input {
+.login-screen h2 {
+  align-self: center;
+  font-size: 20.8px;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.login-screen form {
+  display: flex;
+  flex-direction: column;
+  height: 30%;
+  justify-content: space-between;
+  margin: 0;
+  text-align: center;
+}
+
+.login-screen input {
+  align-self: center;
+  border: 2px solid;
+  box-shadow: 1px 1px 0 0 , 2px 2px 0 0 , 3px 3px 0 0 , 4px 4px 0 0;
   height: 58px;
   margin-top: 10px;
+  outline: none;
   width: 290px;
 }
 
-form button {
-  background: #6ce34f;
+.login-screen button {
+  align-self: center;
+  background-color: #6ce34f;
   border-style: none;
-  height: 58px;
+  box-shadow: 1px 1px 0 0 , 2px 2px 0 0 , 3px 3px 0 0 , 4px 4px 0 0;
+  height: 66px;
   margin-top: 20px;
+  transition: background-color 0.35s;
   width: 290px;
 }
 
-div {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  margin: 20px;
+.login-screen button:disabled {
+  background-color: #6de34f67;
+  transition: background-color 0.4s;
 }
