@@ -10,6 +10,7 @@ import Explore from './pages/Explore';
 import ExploreFoods from './pages/ExploreFoods';
 import ExploreDrinks from './pages/ExploreDrinks';
 import Profile from './pages/Profile';
+import RecipeInProgress from './pages/RecipeInProgress';
 import RecipeDetailsProvider from './context/RecipeDetailsProvider';
 import ExploreIngredients from './pages/ExploreIngredients';
 import ExploreNationality from './pages/ExploreNationality';
@@ -95,7 +96,11 @@ function App() {
           />
           <Route
             path="/drinks/:id/in-progress"
-            // component={ ReceitasEmProgresso }
+            component={ RecipeInProgress }
+          />
+          <Route
+            path="/foods/:id/in-progress"
+            component={ RecipeInProgress }
           />
           <Route
             path="*"
