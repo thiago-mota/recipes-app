@@ -11,6 +11,9 @@ import ExploreFoods from './pages/ExploreFoods';
 import ExploreDrinks from './pages/ExploreDrinks';
 import Profile from './pages/Profile';
 import RecipeDetailsProvider from './context/RecipeDetailsProvider';
+import ExploreIngredients from './pages/ExploreIngredients';
+import ExploreNationality from './pages/ExploreNationality';
+import NotFound from './components/NotFound';
 
 function App() {
   return (
@@ -22,6 +25,11 @@ function App() {
             exact
             path="/"
             component={ Login }
+          />
+          <Route
+            exact
+            path="/profile"
+            component={ Profile }
           />
           <Route
             exact
@@ -45,6 +53,16 @@ function App() {
           />
           <Route
             exact
+            path="/explore/foods/ingredients"
+            component={ ExploreIngredients }
+          />
+          <Route
+            exact
+            path="/explore/foods/nationalities"
+            component={ ExploreNationality }
+          />
+          <Route
+            exact
             path="/explore/drinks"
             component={ ExploreDrinks }
           />
@@ -62,12 +80,26 @@ function App() {
           </RecipeDetailsProvider>
           <Route
             exact
-            path="/profile"
-            component={ Profile }
+            path="/explore/drinks/ingredients"
+            component={ ExploreIngredients }
+          />
+          <Route
+            exact
+            path="/foods/:id"
+            component={ RecipeDetails }
+          />
+          <Route
+            exact
+            path="/drinks/:id"
+            component={ RecipeDetails }
           />
           <Route
             path="/drinks/:id/in-progress"
             // component={ ReceitasEmProgresso }
+          />
+          <Route
+            path="*"
+            component={ NotFound }
           />
         </Switch>
       </Provider>

@@ -26,7 +26,7 @@ function Provider({ children }) {
   const [categories, setCategories] = useState([]);
   const [searchByCategory, setSearchByCategory] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState('ALL');
-
+  const [selectedIngredient, setSelectedIngredient] = useState([]);
   const history = useHistory();
   const location = useLocation();
   const alert = 'Sorry, we haven\'t found any recipes for these filters.';
@@ -42,6 +42,10 @@ function Provider({ children }) {
       return slicedArray;
     }
     return array;
+  };
+
+  const selectIngredient = (ingredient) => {
+    setSelectedIngredient(ingredient);
   };
 
   function typeCheck(pathname) {
@@ -68,11 +72,20 @@ function Provider({ children }) {
   const initialRender = async (foodOrDrink) => {
     if (foodOrDrink === '/foods') {
       const returnApi = await apiName('');
-      setData(trimArray(returnApi));
+      if (selectedIngredient) {
+        const filteredMeals = await apiIngredient(selectedIngredient);
+        setData(trimArray(filteredMeals));
+      } else { setData(trimArray(returnApi)); }
     } else if (foodOrDrink === '/drinks') {
       const returnApi = await apiDrinkName('');
-      setData(trimArray(returnApi));
+      if (selectedIngredient) {
+        const filteredDrinks = await apiDrinkIngredient(selectedIngredient);
+        setData(trimArray(filteredDrinks));
+      } else {
+        setData(trimArray(returnApi));
+      }
     }
+    setSelectedIngredient('');
     setSelectedCategory('ALL');
     setSearchByCategory(false);
     typeCheck(location.pathname);
@@ -197,7 +210,6 @@ function Provider({ children }) {
     }
     setFilterSearchInput('');
     fetchCategories();
-
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, location.pathname]);
 
@@ -217,6 +229,7 @@ function Provider({ children }) {
     setSearchByCategory,
     setSelectedCategory,
     selectedCategory,
+    selectIngredient,
   };
 
   return (
