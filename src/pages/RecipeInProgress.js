@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
-// import RecomendationCard from '../components/RecommendationCard';
+import './RecipeInProgress.css';
 import './RecipeDetails.css';
 import InProgress from '../components/InProgress';
 
@@ -42,25 +42,6 @@ function RecipeInProgress() {
     getRecipeDetails();
   }, [location, id]);
 
-  // const data = apiRecipeById(id);
-  // console.log(inPro);
-  // }
-  // const getTheRecipe = async (idKey) => {
-  //   if (location.includes('foods')) {
-  // const apiRecipeDetails = await apiRecipeById(idKey);
-  // console.log(apiRecipeDetails);
-  // setInPro(apiRecipeDetails);
-  //   continueRecipeState(apiRecipeDetails.meals[0], idKey);
-  // }
-  // if (location.includes('drinks')) {
-  //   const apiDrinkDetails = await apiDrinkRecipeById(idKey);
-  //   setInPro(apiDrinkDetails.drinks[0]);
-  //   continueRecipeState(apiDrinkDetails.drinks[0], idKey);
-  // }
-  // };
-
-  // console.log(inPro);
-
   const renderFood = () => (
     <div>
       <img
@@ -68,7 +49,7 @@ function RecipeInProgress() {
         alt="recipe_photo"
         data-testid="recipe-photo"
       />
-      <title data-testid="recipe-h2">{ inPro.strMeal }</title>
+      <h2 data-testid="recipe-title">{ inPro.strMeal }</h2>
       <p data-testid="recipe-category">{ inPro.strCategory }</p>
       <button type="button" data-testid="share-btn">compartilhar</button>
       <button type="button" data-testid="favorite-btn">favoritar</button>
@@ -96,7 +77,7 @@ function RecipeInProgress() {
         alt="recipe_photo"
         data-testid="recipe-photo"
       />
-      <title data-testid="recipe-title">{ inPro.strDrink }</title>
+      <h2 data-testid="recipe-title">{ inPro.strDrink }</h2>
       <p data-testid="recipe-category">{ inPro.strAlcoholic }</p>
       <button type="button" data-testid="share-btn">compartilhar</button>
       <button type="button" data-testid="favorite-btn">favoritar</button>

@@ -6,6 +6,17 @@ import InProgress from '../components/InProgress';
 
 function ExploreFoods() {
   const history = useHistory();
+  const fetchFoodRecide = async () => {
+    const response = await fetch('https://www.themealdb.com/api/json/v1/1/random.php');
+    const data = await response.json();
+    return data.meals;
+  };
+  const getFoodRecipe = async () => {
+    const foodRecipe = await fetchFoodRecide();
+    const idFood = foodRecipe[0].idMeal;
+    history.push(`/foods/${idFood}`);
+  };
+
   return (
     <div>
       <Header title="Explore Foods" />
@@ -26,7 +37,7 @@ function ExploreFoods() {
       <button
         type="button"
         data-testid="explore-surprise"
-        onClick={ () => history.push('') }
+        onClick={ () => getFoodRecipe() }
       >
         Surprise me!
       </button>
