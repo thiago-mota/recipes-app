@@ -1,0 +1,11 @@
+.ingredient-card {
+  border-radius: 6px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  margin: 9px 0 4.9px;
+  text-align: center;
+  width: 46.5%;
+}
+
+.ingredient-card img {
+  padding-bottom: 10px;
+}

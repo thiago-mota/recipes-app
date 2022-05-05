@@ -45,3 +45,19 @@ export async function apiDrinkRecipeById(id) {
   const result = await response.json();
   return result;
 }
+
+export async function apiDrinkIngredientList() {
+  const nOfIngr = 12;
+  const endpoint = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list';
+  const response = await fetch(endpoint);
+  const result = await response.json();
+  const slicedArray = result.drinks.slice(0, nOfIngr);
+  return slicedArray;
+}
+
+export async function apiDrinkByIngredient(ingredient) {
+  const endpoint = `http://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`;
+  const response = await fetch(endpoint);
+  const result = await response.json();
+  return result.meals;
+}
