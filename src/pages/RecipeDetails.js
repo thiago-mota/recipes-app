@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import Context from '../context/Context';
 import RecomendationCard from '../components/RecommendationCard';
 import './RecipeDetails.css';
+import shareIcon from '../images/shareIcon.svg';
 
 function RecipeDetails() {
   const {
@@ -34,6 +35,12 @@ function RecipeDetails() {
     ));
   };
 
+  const shareRecipe = () => {
+    const url = 'http://localhost:3000'.concat(location.pathname);
+    navigator.clipboard.writeText(url);
+    document.getElementById('link-copied').innerHTML = 'Link copied!';
+  };
+
   const renderFood = () => (
     <div>
       <img
@@ -42,7 +49,14 @@ function RecipeDetails() {
         data-testid="recipe-photo"
       />
       <title data-testid="recipe-title">{ recipeDetails.strMeal }</title>
-      <button type="button" data-testid="share-btn">compartilhar</button>
+      <button
+        type="button"
+        data-testid="share-btn"
+        onClick={ shareRecipe }
+      >
+        <img src={ shareIcon } alt="share_icon" />
+      </button>
+      <p id="link-copied" />
       <button type="button" data-testid="favorite-btn">favoritar</button>
       <span data-testid="recipe-category">{recipeDetails.strCategory}</span>
       { filterIngredients() }
@@ -80,7 +94,14 @@ function RecipeDetails() {
         data-testid="recipe-photo"
       />
       <title data-testid="recipe-title">{ recipeDetails.strDrink }</title>
-      <button type="button" data-testid="share-btn">compartilhar</button>
+      <button
+        type="button"
+        data-testid="share-btn"
+        onClick={ shareRecipe }
+      >
+        <img src={ shareIcon } alt="share_icon" />
+      </button>
+      <p id="link-copied" />
       <button type="button" data-testid="favorite-btn">favoritar</button>
       <span data-testid="recipe-category">{recipeDetails.strAlcoholic}</span>
       { filterIngredients() }
