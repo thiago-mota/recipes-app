@@ -34,3 +34,10 @@ export async function apiMealsByCategory(category) {
   const result = await response.json();
   return result.meals;
 }
+
+export async function apiRecipeById(id) {
+  const endpoint = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`;
+  const response = await fetch(endpoint);
+  const result = await response.json();
+  return result;
+}

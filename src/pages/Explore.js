@@ -2,14 +2,12 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import InProgress from '../components/InProgress';
 
 function Explore() {
   const history = useHistory();
   return (
     <div>
-      <InProgress />
-      <Header />
+      <Header title="Explore" />
       <button
         type="button"
         data-testid="explore-foods"

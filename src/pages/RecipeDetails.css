@@ -1,0 +1,12 @@
+.horizontalScroll {
+  display: flex;
+  flex-direction: row;
+  overflow: scroll;
+  width: 360px;
+}
+
+.btnStartRecipe {
+  background-color: rgb(20, 209, 20);
+  bottom: 0;
+  position: fixed;
+}

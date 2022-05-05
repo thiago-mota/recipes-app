@@ -38,3 +38,10 @@ export async function apiDrinksByCategory(category) {
   const result = await response.json();
   return result.drinks;
 }
+
+export async function apiDrinkRecipeById(id) {
+  const endpoint = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`;
+  const response = await fetch(endpoint);
+  const result = await response.json();
+  return result;
+}
