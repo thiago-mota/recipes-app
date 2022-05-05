@@ -3,6 +3,8 @@ import { useLocation } from 'react-router-dom';
 import { apiMealIngredientList } from '../services/apiFood';
 import { apiDrinkIngredientList } from '../services/apiDrinks';
 import IngredientCard from '../components/IngredientCard';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 function ExploreIngredients() {
   const [ingredients, setIngredients] = useState([]);
@@ -30,6 +32,7 @@ function ExploreIngredients() {
 
   return (
     <div>
+      <Header title="Explore Ingredients" />
       {!ingredients
         ? <p>Loading</p>
         : (
@@ -43,6 +46,7 @@ function ExploreIngredients() {
               />),
             )}
           </ul>)}
+      <Footer />
     </div>
 
   );

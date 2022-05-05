@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Context from '../context/Context';
+import './IngredientCard.css';
 
 function IngredientCard(props) {
   const { ing, type, index } = props;
@@ -20,6 +21,7 @@ function IngredientCard(props) {
   if (type === 'food') {
     return (
       <li
+        className="ingredient-card"
         data-testid={ `${index}-ingredient-card` }
       >
         <div
@@ -46,6 +48,7 @@ function IngredientCard(props) {
   } if (type === 'drink') {
     return (
       <li
+        className="ingredient-card"
         data-testid={ `${index}-ingredient-card` }
       >
         <div

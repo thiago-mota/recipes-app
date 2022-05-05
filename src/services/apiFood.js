@@ -50,3 +50,17 @@ export async function apiMealIngredientList() {
   const slicedArray = result.meals.slice(0, nOfIngr);
   return slicedArray;
 }
+
+export async function apiNationalitiesList() {
+  const endpoint = 'https://www.themealdb.com/api/json/v1/1/list.php?a=list';
+  const response = await fetch(endpoint);
+  const result = await response.json();
+  return result.meals;
+}
+
+export async function apiByNationality(nationality) {
+  const endpoint = `https://www.themealdb.com/api/json/v1/1/filter.php?a=${nationality}`;
+  const response = await fetch(endpoint);
+  const result = await response.json();
+  return result.meals;
+}
