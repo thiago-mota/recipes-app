@@ -1,23 +1,32 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import './InProgress.css';
+import Context from '../context/Context';
 
 function CheckboxIngredients(props) {
-  const [checkboxState, setCheckboxState] = useState(false);
+  const {
+    checkValue,
+    allChecked,
+    addCheckedIngredient,
+    removeCheckedIngredient,
+  } = useContext(Context);
+  const { ingredient, index } = props;
+  const [checkboxState, setCheckboxState] = useState(checkValue(ingredient));
   const [className, setClassName] = useState('noChecked');
 
   const handleChecked = () => {
     if (checkboxState === false) {
       setCheckboxState(true);
       setClassName('check');
+      addCheckedIngredient(ingredient);
     }
     if (checkboxState === true) {
       setCheckboxState(false);
       setClassName('noChecked');
+      removeCheckedIngredient(ingredient);
     }
+    allChecked();
   };
-
-  const { ingredient, index } = props;
 
   return (
     <div

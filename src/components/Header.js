@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { PropTypes } from 'prop-types';
 import { useHistory } from 'react-router-dom';
+import './Header.css';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 import SearchBar from './SearchBar';
@@ -9,7 +10,7 @@ function Header({ title }) {
   const [showSearch, setshowSearch] = useState(false);
   const history = useHistory();
   return (
-    <header>
+    <header className="headerIcons">
       <button
         type="button"
         onClick={ () => history.push('/profile') }
