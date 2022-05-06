@@ -7,7 +7,7 @@ function RecipeeCard(props) {
 
   const { index } = props;
 
-  if (location.pathname === '/foods') {
+  if (location.pathname.includes('foods')) {
     const { meal: { strMeal, strMealThumb, idMeal } } = props;
     return (
       <Link to={ `/foods/${idMeal}` } className="recipe-card">
@@ -28,7 +28,7 @@ function RecipeeCard(props) {
       </Link>
 
     );
-  } if (location.pathname === '/drinks') {
+  } if (location.pathname.includes('drinks')) {
     const { meal: { strDrink, strDrinkThumb, idDrink } } = props;
     return (
       <Link to={ `/drinks/${idDrink}` } className="recipe-card">

@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import Context from '../context/Context';
 import RecomendationCard from '../components/RecommendationCard';
 import './RecipeDetails.css';
+import shareIcon from '../images/shareIcon.svg';
 
 function RecipeDetails() {
   const {
@@ -13,6 +14,7 @@ function RecipeDetails() {
   } = useContext(Context);
   const location = useLocation();
 
+  console.log(getRecipeDetails);
   useEffect(() => {
     getRecipeDetails(location.pathname);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -34,6 +36,12 @@ function RecipeDetails() {
     ));
   };
 
+  const shareRecipe = () => {
+    const url = 'http://localhost:3000'.concat(location.pathname);
+    navigator.clipboard.writeText(url);
+    document.getElementById('link-copied').innerHTML = 'Link copied!';
+  };
+
   const renderFood = () => (
     <div>
       <img
@@ -41,12 +49,26 @@ function RecipeDetails() {
         alt="recipe_photo"
         data-testid="recipe-photo"
       />
-      <title data-testid="recipe-title">{ recipeDetails.strMeal }</title>
-      <button type="button" data-testid="share-btn">compartilhar</button>
+      <h2 data-testid="recipe-title">{ recipeDetails.strMeal }</h2>
+      <p data-testid="recipe-category">{recipeDetails.strCategory}</p>
+      <button
+        type="button"
+        data-testid="share-btn"
+        onClick={ shareRecipe }
+      >
+        <img src={ shareIcon } alt="share_icon" />
+      </button>
+      <p id="link-copied" />
       <button type="button" data-testid="favorite-btn">favoritar</button>
-      <span data-testid="recipe-category">{recipeDetails.strCategory}</span>
-      { filterIngredients() }
-      <span data-testid="instructions">{recipeDetails.strInstructions}</span>
+      <div>
+        <h3>Ingredients</h3>
+        { filterIngredients() }
+      </div>
+      <span data-testid="instructions">
+        <h3>Instructions</h3>
+        {recipeDetails.strInstructions}
+      </span>
+      <h3>Video</h3>
       <iframe
         title="recipe_video"
         data-testid="video"
@@ -55,7 +77,10 @@ function RecipeDetails() {
       >
         {recipeDetails.strYoutube}
       </iframe>
-      <div className="horizontalScroll"><RecomendationCard /></div>
+      <div className="horizontalScroll">
+        <h3>Recommended</h3>
+        <RecomendationCard />
+      </div>
       { startRecipe
         && (
           <div>
@@ -79,14 +104,31 @@ function RecipeDetails() {
         alt="recipe_photo"
         data-testid="recipe-photo"
       />
-      <title data-testid="recipe-title">{ recipeDetails.strDrink }</title>
-      <button type="button" data-testid="share-btn">compartilhar</button>
+      <h2 data-testid="recipe-title">{ recipeDetails.strDrink }</h2>
+      <p data-testid="recipe-category">{recipeDetails.strAlcoholic}</p>
+      <button
+        type="button"
+        data-testid="share-btn"
+        onClick={ shareRecipe }
+      >
+        <img src={ shareIcon } alt="share_icon" />
+      </button>
+      <p id="link-copied" />
       <button type="button" data-testid="favorite-btn">favoritar</button>
-      <span data-testid="recipe-category">{recipeDetails.strAlcoholic}</span>
-      { filterIngredients() }
-      <span data-testid="instructions">{recipeDetails.strInstructions}</span>
+      <div>
+        <h3>Ingredients</h3>
+        { filterIngredients() }
+      </div>
+      <span data-testid="instructions">
+        <h3>Instructions</h3>
+        {recipeDetails.strInstructions}
+      </span>
+      <h3>Video</h3>
       <iframe title="recipe_video" data-testid="video">{recipeDetails.strYoutube}</iframe>
-      <div className="horizontalScroll"><RecomendationCard /></div>
+      <div className="horizontalScroll">
+        <h3>Recommended</h3>
+        <RecomendationCard />
+      </div>
       { startRecipe
         && (
           <div>
