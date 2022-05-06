@@ -5,6 +5,16 @@ import Footer from '../components/Footer';
 
 function ExploreDrinks() {
   const history = useHistory();
+  const fetchDrinksRecide = async () => {
+    const response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php');
+    const data = await response.json();
+    return data.drinks;
+  };
+  const getDrinkRecipe = async () => {
+    const response = await fetchDrinksRecide();
+    history.push(`/drinks/${response[0].idDrink}`);
+  };
+
   return (
     <div>
       <Header title="Explore Drinks" />
@@ -18,7 +28,7 @@ function ExploreDrinks() {
       <button
         type="button"
         data-testid="explore-surprise"
-        onClick={ () => history.push('') }
+        onClick={ () => getDrinkRecipe() }
       >
         Surprise me!
       </button>
