@@ -65,6 +65,7 @@ function RecipeInProgress() {
   const renderFood = () => (
     <div>
       <img
+        className="img-in-progress"
         src={ inPro.strMealThumb }
         alt="recipe_photo"
         data-testid="recipe-photo"
@@ -76,7 +77,7 @@ function RecipeInProgress() {
         onClick={ shareRecipe }
         data-testid="share-btn"
       >
-        <img src={ shareIcon } alt="share_icon" />
+        <img className="img-in-progress" src={ shareIcon } alt="share_icon" />
       </button>
       <p id="link-copied" />
       <button
@@ -107,6 +108,7 @@ function RecipeInProgress() {
   const renderDrink = () => (
     <div>
       <img
+        className="img-in-progress"
         src={ inPro.strDrinkThumb }
         alt="recipe_photo"
         data-testid="recipe-photo"
@@ -118,7 +120,7 @@ function RecipeInProgress() {
         onClick={ shareRecipe }
         data-testid="share-btn"
       >
-        <img src={ shareIcon } alt="share_icon" />
+        <img className="img-in-progress" src={ shareIcon } alt="share_icon" />
       </button>
       <p id="link-copied" />
       <button type="button" data-testid="favorite-btn">favoritar</button>
