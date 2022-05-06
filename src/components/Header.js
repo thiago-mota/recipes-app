@@ -21,16 +21,18 @@ function Header({ title }) {
         />
       </button>
       <h1 data-testid="page-title">{title}</h1>
-      <button
-        type="button"
-        onClick={ () => setshowSearch(!showSearch) }
-      >
-        <img
-          data-testid="search-top-btn"
-          src={ searchIcon }
-          alt="search icon"
-        />
-      </button>
+      {title === 'Foods' || title === 'Drinks' || title === 'Explore Nationalities' ? (
+        <button
+          type="button"
+          onClick={ () => setshowSearch(!showSearch) }
+        >
+          <img
+            data-testid="search-top-btn"
+            src={ searchIcon }
+            alt="search icon"
+          />
+        </button>
+      ) : ''}
       { showSearch ? <SearchBar /> : ''}
     </header>
   );
