@@ -1,9 +1,6 @@
 img {
-  width: 80px;
-}
-
-title {
-  background-color: red;
-  color: red;
-  margin: 160px;
+  border-radius: 6px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  margin: 9px 0 4.9px;
+  text-align: center;
 }

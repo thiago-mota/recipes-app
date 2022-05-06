@@ -6,10 +6,8 @@ import InProgress from '../components/InProgress';
 
 function RecipeInProgress() {
   const [inPro, setInPro] = useState([]);
-
   const { id } = useParams();
   const location = useLocation();
-  // console.log(location.pathname);
 
   useEffect(() => {
     async function apiRecipeByIdFood() {
@@ -27,7 +25,6 @@ function RecipeInProgress() {
       const preResult = result.drinks;
       return preResult[0];
     }
-
     // console.log(id);
     const getRecipeDetails = async () => {
       if (location.pathname.includes('food')) {
@@ -41,6 +38,16 @@ function RecipeInProgress() {
     };
     getRecipeDetails();
   }, [location, id]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const iny = e.target.elements.value;
+    localStorage.setItem('recipeInProgress', JSON.stringify(iny));
+    localStorage.setItem('@welcome-app/username', username);
+    window.location.reload();
+    // console.log('Seu progresso foi gravado');
+    console.log(e);
+  };
 
   const renderFood = () => (
     <div>
@@ -64,6 +71,7 @@ function RecipeInProgress() {
       <button
         data-testid="finish-recipe-btn"
         type="button"
+        onClick={ handleSubmit }
       >
         Finalizar Receita
       </button>

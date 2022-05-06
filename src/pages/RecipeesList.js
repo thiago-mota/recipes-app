@@ -9,9 +9,11 @@ import CategoriesFilter from '../components/CategoriesFilter';
 
 function RecipeesList() {
   const [title, setTitle] = useState();
-  const {
-    data, initialRender, idType, loading } = useContext(Context);
+  const { data, initialRender, idType, loading } = useContext(Context);
   const location = useLocation();
+  console.log(location);
+  console.log(typeof location.pathname);
+  console.log(location.pathname);
 
   useEffect(() => {
     initialRender(location.pathname);
