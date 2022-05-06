@@ -22,6 +22,7 @@ function RecipeDetailsProvider({ children }) {
 
   const location = useLocation();
 
+  // função que cria objeto de comida favorita
   const foodFavoriteRecipe = (type) => ({
     id: recipeDetails.idMeal,
     type,
@@ -31,6 +32,8 @@ function RecipeDetailsProvider({ children }) {
     name: recipeDetails.strMeal,
     image: recipeDetails.strMealThumb,
   });
+
+  // função que cria objeto de drink favorito
 
   const drinkFavoriteRecipe = (type) => ({
     id: recipeDetails.idDrink,
@@ -42,6 +45,7 @@ function RecipeDetailsProvider({ children }) {
     image: recipeDetails.strDrinkThumb,
   });
 
+  // função chamada no botão de favoritar
   const favoriteOnClick = () => {
     const icon = favoriteIcon === whiteHeartIcon ? blackHeartIcon : whiteHeartIcon;
     setFavoriteIcon(icon);
@@ -51,6 +55,7 @@ function RecipeDetailsProvider({ children }) {
     localStorage.setItem('favoriteRecipes', JSON.stringify([favoriteRecipe]));
   };
 
+  // função que checa se a receita ja é favoritada e altera a cor do ícone
   const favoriteRecipeState = (recipeDetail) => {
     const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
     if (favoriteRecipes) {
