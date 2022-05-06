@@ -26,7 +26,7 @@ function Provider({ children }) {
   const [categories, setCategories] = useState([]);
   const [searchByCategory, setSearchByCategory] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState('ALL');
-  const [selectedIngredient, setSelectedIngredient] = useState([]);
+  const [selectedIngredient, setSelectedIngredient] = useState('');
   const history = useHistory();
   const location = useLocation();
   const alert = 'Sorry, we haven\'t found any recipes for these filters.';

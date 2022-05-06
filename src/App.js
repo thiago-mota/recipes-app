@@ -16,6 +16,7 @@ import IngredientsProvider from './context/IngredientsProvider';
 import ExploreIngredients from './pages/ExploreIngredients';
 import ExploreNationality from './pages/ExploreNationality';
 import NotFound from './components/NotFound';
+import DoneRecipes from './pages/DoneRecipes';
 
 function App() {
   return (
@@ -98,7 +99,7 @@ function App() {
         <Route
           exact
           path="/done-recipes"
-          // component={ DoneRecipes }
+          component={ DoneRecipes }
         />
       </Provider>
       <Route
