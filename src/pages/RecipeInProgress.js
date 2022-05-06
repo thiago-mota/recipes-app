@@ -39,15 +39,9 @@ function RecipeInProgress() {
     getRecipeDetails();
   }, [location, id]);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const iny = e.target.elements.value;
-    localStorage.setItem('recipeInProgress', JSON.stringify(iny));
-    localStorage.setItem('@welcome-app/username', username);
-    window.location.reload();
-    // console.log('Seu progresso foi gravado');
-    console.log(e);
-  };
+  localStorage.setItem('recipeInProgress', JSON.stringify(inPro));
+  console.log('Seu progresso foi gravado');
+  // console.log(recipeInProgress);
 
   const renderFood = () => (
     <div>
@@ -71,7 +65,6 @@ function RecipeInProgress() {
       <button
         data-testid="finish-recipe-btn"
         type="button"
-        onClick={ handleSubmit }
       >
         Finalizar Receita
       </button>
