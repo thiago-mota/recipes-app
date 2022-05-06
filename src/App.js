@@ -12,14 +12,16 @@ import ExploreDrinks from './pages/ExploreDrinks';
 import Profile from './pages/Profile';
 import RecipeInProgress from './pages/RecipeInProgress';
 import RecipeDetailsProvider from './context/RecipeDetailsProvider';
+import IngredientsProvider from './context/IngredientsProvider';
 import ExploreIngredients from './pages/ExploreIngredients';
 import ExploreNationality from './pages/ExploreNationality';
 import NotFound from './components/NotFound';
+import DoneRecipes from './pages/DoneRecipes';
 
 function App() {
   return (
-    <Provider>
-      <Switch>
+    <Switch>
+      <Provider>
         <Route
           exact
           path="/"
@@ -65,21 +67,6 @@ function App() {
           path="/explore/drinks"
           component={ ExploreDrinks }
         />
-        <Route
-          exact
-          path="/drinks/:id/in-progress"
-          component={ RecipeInProgress }
-        />
-        <Route
-          exact
-          path="/foods/:id/in-progress"
-          component={ RecipeInProgress }
-        />
-        <Route
-          exact
-          path="/explore/drinks/ingredients"
-          component={ ExploreIngredients }
-        />
         <RecipeDetailsProvider>
           <Route
             exact
@@ -92,12 +79,34 @@ function App() {
             component={ RecipeDetails }
           />
         </RecipeDetailsProvider>
+        <IngredientsProvider>
+          <Route
+            exact
+            path="/drinks/:id/in-progress"
+            component={ RecipeInProgress }
+          />
+          <Route
+            exact
+            path="/foods/:id/in-progress"
+            component={ RecipeInProgress }
+          />
+        </IngredientsProvider>
         <Route
-          path="*"
-          component={ NotFound }
+          exact
+          path="/explore/drinks/ingredients"
+          component={ ExploreIngredients }
         />
-      </Switch>
-    </Provider>
+        <Route
+          exact
+          path="/done-recipes"
+          component={ DoneRecipes }
+        />
+      </Provider>
+      <Route
+        path="*"
+        component={ NotFound }
+      />
+    </Switch>
   );
 }
 

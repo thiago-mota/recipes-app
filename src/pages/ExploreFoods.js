@@ -2,7 +2,6 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import InProgress from '../components/InProgress';
 
 function ExploreFoods() {
   const history = useHistory();
@@ -41,7 +40,6 @@ function ExploreFoods() {
       >
         Surprise me!
       </button>
-      <InProgress />
       <Footer />
     </div>
   );

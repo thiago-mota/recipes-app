@@ -14,7 +14,6 @@ function RecipeDetails() {
   } = useContext(Context);
   const location = useLocation();
 
-  console.log(getRecipeDetails);
   useEffect(() => {
     getRecipeDetails(location.pathname);
     // eslint-disable-next-line react-hooks/exhaustive-deps
