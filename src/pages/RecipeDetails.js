@@ -11,6 +11,8 @@ function RecipeDetails() {
     recipeDetails,
     startRecipe,
     buttonName,
+    favoriteIcon,
+    favoriteOnClick,
   } = useContext(Context);
   const location = useLocation();
 
@@ -59,7 +61,9 @@ function RecipeDetails() {
         <img src={ shareIcon } alt="share_icon" />
       </button>
       <p id="link-copied" />
-      <button type="button" data-testid="favorite-btn">favoritar</button>
+      <button type="button" onClick={ favoriteOnClick } data-testid="favorite-btn">
+        <img src={ favoriteIcon } alt="favorite_icon" />
+      </button>
       <div>
         <h3>Ingredients</h3>
         { filterIngredients() }

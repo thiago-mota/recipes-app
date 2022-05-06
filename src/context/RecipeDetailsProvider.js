@@ -10,14 +10,36 @@ import {
   apiDrinkName,
   apiDrinkRecipeById,
 } from '../services/apiDrinks';
+import whiteHeartIcon from '../images/whiteHeartIcon.svg';
+import blackHeartIcon from '../images/blackHeartIcon.svg';
 
 function RecipeDetailsProvider({ children }) {
   const [recipeDetails, setRecipeDetails] = useState({});
   const [recommendations, setRecommendations] = useState([]);
   const [startRecipe, setStartRecipe] = useState(true);
   const [buttonName, setButtonName] = useState('Start Recipe');
+  const [favoriteIcon, setFavoriteIcon] = useState(whiteHeartIcon);
 
   // const location = useLocation();
+
+  const favoriteOnClick = () => {
+    const icon = favoriteIcon === whiteHeartIcon ? blackHeartIcon : whiteHeartIcon;
+    setFavoriteIcon(icon);
+  };
+
+  const favoriteRecipeState = (recipeDetail) => {
+    const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
+    if (favoriteRecipes) {
+      const foundFavoriteRecipe = favoriteRecipes.find((favRecipe) => (
+        favRecipe.id === recipeDetail.idMeal || favRecipe.id === recipeDetail.idDrink
+      ));
+      if (foundFavoriteRecipe) {
+        setFavoriteIcon(blackHeartIcon);
+      } if (!foundFavoriteRecipe) {
+        setFavoriteIcon(whiteHeartIcon);
+      }
+    }
+  };
 
   const startRecipeState = (recipeDetail) => {
     const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
@@ -58,12 +80,14 @@ function RecipeDetailsProvider({ children }) {
       setRecipeDetails(apiRecipeDetails.meals[0]);
       startRecipeState(apiRecipeDetails.meals[0]);
       continueRecipeState(apiRecipeDetails.meals[0], path);
+      favoriteRecipeState(apiRecipeDetails.meals[0]);
     }
     if (path.includes('drinks')) {
       const apiDrinkDetails = await apiDrinkRecipeById(id);
       setRecipeDetails(apiDrinkDetails.drinks[0]);
       startRecipeState(apiDrinkDetails.drinks[0]);
       continueRecipeState(apiDrinkDetails.drinks[0], path);
+      favoriteRecipeState(apiDrinkDetails.drinks[0]);
     }
   };
 
@@ -88,6 +112,8 @@ function RecipeDetailsProvider({ children }) {
     recommendations,
     startRecipe,
     buttonName,
+    favoriteIcon,
+    favoriteOnClick,
   };
 
   return (
