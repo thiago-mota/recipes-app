@@ -3,6 +3,7 @@ import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../renderWithRouter';
 import ExploreFoods from '../pages/ExploreFoods';
+import { randomMeals } from './mocks/mocks';
 
 const BY_INGREDIENTS_BTN_TESTID = 'explore-by-ingredient';
 const SURPRISE_ME_BTN_TESTID = 'explore-surprise';
@@ -74,10 +75,15 @@ describe('Testa se ao clicar nos botões a rota é modificada', () => {
     + 'de detalhes de uma bebida aleatória.', () => {
     const { history } = renderWithRouter(<ExploreFoods />);
 
+    jest.spyOn(global, 'fetch');
+    global.fetch.mockResolvedValue({
+      json: jest.fn().mockResolvedValue(randomMeals),
+    });
+
     const surpriseMeBtn = screen.getByTestId(SURPRISE_ME_BTN_TESTID);
 
     userEvent.click(surpriseMeBtn);
 
-    expect(history.location.pathname).toBe('/');
+    expect(history.location.pathname).toBe('/foods/52805');
   });
 });

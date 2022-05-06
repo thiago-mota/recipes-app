@@ -4,6 +4,7 @@ import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../renderWithRouter';
 import ExploreDrinks from '../pages/ExploreDrinks';
 import App from '../App';
+import { randomDrinks } from './mocks/mocks';
 
 const BY_INGREDIENTS_BTN_TESTID = 'explore-by-ingredient';
 const SURPRISE_ME_BTN_TESTID = 'explore-surprise';
@@ -18,7 +19,7 @@ const PASSWORD = '0123456789';
 const ENTER_BTN_TESTID = 'login-submit-btn';
 
 describe('Testa se os elementos da tela respeitam os atributos do protótipo.', () => {
-  it('Possui o data-testid "explore-by-ingredient".', () => {
+  it('Possui o botão com data-testid "explore-by-ingredient".', () => {
     renderWithRouter(<ExploreDrinks />);
 
     const byIngredientsBtn = screen.getByTestId(BY_INGREDIENTS_BTN_TESTID);
@@ -26,7 +27,7 @@ describe('Testa se os elementos da tela respeitam os atributos do protótipo.', 
     expect(byIngredientsBtn).toBeInTheDocument();
   });
 
-  it('Possui o data-testid "explore-surprise".', () => {
+  it('Possui o botão com data-testid "explore-surprise".', () => {
     renderWithRouter(<ExploreDrinks />);
 
     const surpriseMeBtn = screen.getByTestId(SURPRISE_ME_BTN_TESTID);
@@ -34,7 +35,7 @@ describe('Testa se os elementos da tela respeitam os atributos do protótipo.', 
     expect(surpriseMeBtn).toBeInTheDocument();
   });
 
-  it('Não possui o data-testid "explore-by-nationality".', () => {
+  it('Não possui o botão com o data-testid "explore-by-nationality".', () => {
     const { history } = renderWithRouter(<App />);
 
     const emailInput = screen.getByTestId(EMAIL_INPUT_TESTID);
@@ -94,10 +95,15 @@ describe('Testa se ao clicar nos botões a rota é modificada', () => {
     + 'de detalhes de uma bebida aleatória.', () => {
     const { history } = renderWithRouter(<ExploreDrinks />);
 
+    jest.spyOn(global, 'fetch');
+    global.fetch.mockResolvedValue({
+      json: jest.fn().mockResolvedValue(randomDrinks),
+    });
+
     const surpriseMeBtn = screen.getByTestId(SURPRISE_ME_BTN_TESTID);
 
     userEvent.click(surpriseMeBtn);
 
-    expect(history.location.pathname).toBe('/');
+    expect(history.location.pathname).toBe('/drinks/15691');
   });
 });
