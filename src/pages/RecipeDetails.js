@@ -61,9 +61,13 @@ function RecipeDetails() {
         <img src={ shareIcon } alt="share_icon" />
       </button>
       <p id="link-copied" />
-      <button type="button" onClick={ favoriteOnClick } data-testid="favorite-btn">
-        <img src={ favoriteIcon } alt="favorite_icon" />
-      </button>
+      <input
+        type="image"
+        src={ favoriteIcon }
+        alt="favorite_icon"
+        onClick={ favoriteOnClick }
+        data-testid="favorite-btn"
+      />
       <div>
         <h3>Ingredients</h3>
         { filterIngredients() }
@@ -118,7 +122,13 @@ function RecipeDetails() {
         <img src={ shareIcon } alt="share_icon" />
       </button>
       <p id="link-copied" />
-      <button type="button" data-testid="favorite-btn">favoritar</button>
+      <input
+        type="image"
+        src={ favoriteIcon }
+        alt="favorite_icon"
+        onClick={ favoriteOnClick }
+        data-testid="favorite-btn"
+      />
       <div>
         <h3>Ingredients</h3>
         { filterIngredients() }

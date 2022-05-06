@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-// import { useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import Context from './Context';
 import {
   apiName,
@@ -20,11 +20,35 @@ function RecipeDetailsProvider({ children }) {
   const [buttonName, setButtonName] = useState('Start Recipe');
   const [favoriteIcon, setFavoriteIcon] = useState(whiteHeartIcon);
 
-  // const location = useLocation();
+  const location = useLocation();
+
+  const foodFavoriteRecipe = (type) => ({
+    id: recipeDetails.idMeal,
+    type,
+    nationality: recipeDetails.strArea,
+    category: recipeDetails.strCategory,
+    alcoholicOrNot: '',
+    name: recipeDetails.strMeal,
+    image: recipeDetails.strMealThumb,
+  });
+
+  const drinkFavoriteRecipe = (type) => ({
+    id: recipeDetails.idDrink,
+    type,
+    nationality: '',
+    category: recipeDetails.strCategory,
+    alcoholicOrNot: recipeDetails.strAlcoholic,
+    name: recipeDetails.strDrink,
+    image: recipeDetails.strDrinkThumb,
+  });
 
   const favoriteOnClick = () => {
     const icon = favoriteIcon === whiteHeartIcon ? blackHeartIcon : whiteHeartIcon;
     setFavoriteIcon(icon);
+    const type = location.pathname.includes('food') ? 'food' : 'drink';
+    const favoriteRecipe = (type === 'food')
+      ? foodFavoriteRecipe(type) : drinkFavoriteRecipe(type);
+    localStorage.setItem('favoriteRecipes', JSON.stringify([favoriteRecipe]));
   };
 
   const favoriteRecipeState = (recipeDetail) => {
