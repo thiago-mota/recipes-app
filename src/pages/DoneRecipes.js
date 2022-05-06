@@ -1,4 +1,3 @@
-// O imagem do card de receita deve ter o atributo data-testid="${index}-horizontal-image";
 // O texto da categoria da receita deve ter o atributo data-testid="${index}-horizontal-top-text";
 // O texto do nome da receita deve ter o atributo data-testid="${index}-horizontal-name";
 // O texto da data que a receita foi feita deve ter o atributo data-testid="${index}-horizontal-done-date";
