@@ -20,20 +20,21 @@ function CheckboxIngredients(props) {
   const { ingredient, index } = props;
 
   return (
-    <div>
+    <div
+      data-testid={ `${index}-ingredient-step` }
+    >
+      <input
+        id={ index }
+        type="checkbox"
+        checked={ checkboxState }
+        onChange={ handleChecked }
+        name={ ingredient }
+      />
       <label
         htmlFor={ index }
         key={ index }
         className={ className }
       >
-        <input
-          data-testid={ `${index}-ingredient-step` }
-          id={ index }
-          type="checkbox"
-          checked={ checkboxState }
-          onChange={ handleChecked }
-          name={ ingredient }
-        />
         { ingredient }
       </label>
     </div>

@@ -49,7 +49,7 @@ function RecipeDetails() {
         alt="recipe_photo"
         data-testid="recipe-photo"
       />
-      <title data-testid="recipe-title">{ recipeDetails.strMeal }</title>
+      <h2 data-testid="recipe-title">{ recipeDetails.strMeal }</h2>
       <p data-testid="recipe-category">{recipeDetails.strCategory}</p>
       <button
         type="button"
@@ -104,7 +104,7 @@ function RecipeDetails() {
         alt="recipe_photo"
         data-testid="recipe-photo"
       />
-      <title data-testid="recipe-title">{ recipeDetails.strDrink }</title>
+      <h2 data-testid="recipe-title">{ recipeDetails.strDrink }</h2>
       <p data-testid="recipe-category">{recipeDetails.strAlcoholic}</p>
       <button
         type="button"
