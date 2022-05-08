@@ -11,10 +11,11 @@ function RecipeDetails() {
     recipeDetails,
     startRecipe,
     buttonName,
+    favoriteIcon,
+    favoriteOnClick,
   } = useContext(Context);
   const location = useLocation();
 
-  console.log(getRecipeDetails);
   useEffect(() => {
     getRecipeDetails(location.pathname);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -59,7 +60,13 @@ function RecipeDetails() {
         <img src={ shareIcon } alt="share_icon" />
       </button>
       <p id="link-copied" />
-      <button type="button" data-testid="favorite-btn">favoritar</button>
+      <input
+        type="image"
+        src={ favoriteIcon }
+        alt="favorite_icon"
+        onClick={ favoriteOnClick }
+        data-testid="favorite-btn"
+      />
       <div>
         <h3>Ingredients</h3>
         { filterIngredients() }
@@ -114,7 +121,13 @@ function RecipeDetails() {
         <img src={ shareIcon } alt="share_icon" />
       </button>
       <p id="link-copied" />
-      <button type="button" data-testid="favorite-btn">favoritar</button>
+      <input
+        type="image"
+        src={ favoriteIcon }
+        alt="favorite_icon"
+        onClick={ favoriteOnClick }
+        data-testid="favorite-btn"
+      />
       <div>
         <h3>Ingredients</h3>
         { filterIngredients() }
