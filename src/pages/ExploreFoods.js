@@ -2,6 +2,8 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import './ExploreFoods.css';
+import food from '../images/food.png';
 
 function ExploreFoods() {
   const history = useHistory();
@@ -16,29 +18,35 @@ function ExploreFoods() {
     history.push(`/foods/${idFood}`);
   };
   return (
-    <div>
+    <div className="explorefood">
       <Header title="Explore Foods" />
-      <button
-        type="button"
-        data-testid="explore-by-ingredient"
-        onClick={ () => history.push('/explore/foods/ingredients') }
-      >
-        By Ingredient
-      </button>
-      <button
-        type="button"
-        data-testid="explore-by-nationality"
-        onClick={ () => history.push('/explore/foods/nationalities') }
-      >
-        By Nationality
-      </button>
-      <button
-        type="button"
-        data-testid="explore-surprise"
-        onClick={ () => getFoodRecipe() }
-      >
-        Surprise me!
-      </button>
+      <div className="foodbtns">
+        <button
+          type="button"
+          className="ingredientfoodbtn"
+          data-testid="explore-by-ingredient"
+          onClick={ () => history.push('/explore/foods/ingredients') }
+        >
+          By Ingredient
+        </button>
+        <button
+          type="button"
+          className="nationalityfoodbtn"
+          data-testid="explore-by-nationality"
+          onClick={ () => history.push('/explore/foods/nationalities') }
+        >
+          By Nationality
+        </button>
+        <button
+          type="button"
+          className="surprisefoodbtn"
+          data-testid="explore-surprise"
+          onClick={ () => getFoodRecipe() }
+        >
+          Surprise me!
+        </button>
+      </div>
+      <img className="food" src={ food } alt="food" />
       <Footer />
     </div>
   );

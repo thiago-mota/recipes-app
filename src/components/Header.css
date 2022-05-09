@@ -1,9 +1,35 @@
-.headerIcons {
-  background: rgba(196, 196, 196, 0.85);
+.nav {
+  align-items: center;
+  background-color: brown;
+  color: azure;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  padding: 5px;
-  top: 0;
+  justify-content: space-around;
+  margin-bottom: 5px;
+  text-align: center;
   width: 100%;
+}
+
+.profile {
+  height: 17px;
+  width: 10px;
+}
+
+.profilebtn {
+  border-radius: 20%;
+  box-shadow: inset 0 0 1em rgb(199, 216, 231) , 0 0 1em rgb(255, 25, 25);
+}
+
+.searchbtn {
+  border-radius: 20%;
+  box-shadow: inset 0 0 1em rgb(199, 216, 231) , 0 0 1em rgb(255, 25, 25);
+}
+
+.search {
+  height: 17px;
+  width: 10px;
+}
+
+.titulo {
+  font-size: 20px;
+  margin-top: 2px;
 }
