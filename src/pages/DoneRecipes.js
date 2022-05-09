@@ -5,8 +5,14 @@
 // As tags da receita devem possuir o atributo data-testid=${index}-${tagName}-horizontal-tag;
 import React from 'react';
 import Header from '../components/Header';
+// import Context from '../context/Context';
+// import { useParams } from 'react-router-dom';
 
 function DoneRecipes() {
+  // const { recipeDetails } = useContext(Context);
+  // const { id } = useParams();
+  // console.log(id);
+
   return (
     <div>
       <Header title="Done Recipes" />
