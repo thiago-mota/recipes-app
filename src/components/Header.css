@@ -1,9 +1,39 @@
-.headerIcons {
-  background: rgba(196, 196, 196, 0.85);
+.nav {
+  align-items: center;
+  background-color: brown;
+  color: azure;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  padding: 5px;
-  top: 0;
+  justify-content: space-around;
+  margin-bottom: 5px;
+  text-align: center;
   width: 100%;
+}
+
+.profile {
+  height: 17px;
+  width: 10px;
+}
+
+.profilebtn {
+  border-radius: 20%;
+  margin: 5px 3px 5px 5px;
+}
+
+.searchbtn {
+  border-radius: 20%;
+  margin: 5px 3px 5px 5px;
+}
+
+.search {
+  height: 17px;
+  width: 10px;
+}
+
+.invisiblebtn {
+  visibility: hidden;
+}
+
+h1 {
+  font-size: large;
+  margin-top: 5px;
 }

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import './Profile.css';
 
 function Profile() {
   const history = useHistory();
@@ -21,30 +22,35 @@ function Profile() {
   }, []);
 
   return (
-    <div>
+    <div className="profilepage">
       <Header title="Profile" />
-      <h3 data-testid="profile-email">{ user }</h3>
-      <button
-        type="button"
-        data-testid="profile-done-btn"
-        onClick={ () => history.push('/done-recipes') }
-      >
-        Done Recipes
-      </button>
-      <button
-        type="button"
-        data-testid="profile-favorite-btn"
-        onClick={ () => history.push('/favorite-recipes') }
-      >
-        Favorite Recipes
-      </button>
-      <button
-        type="button"
-        data-testid="profile-logout-btn"
-        onClick={ handleClick }
-      >
-        Logout
-      </button>
+      <p data-testid="profile-email" className="email">{ user }</p>
+      <div className="profilebtns">
+        <button
+          type="button"
+          className="donebtn"
+          data-testid="profile-done-btn"
+          onClick={ () => history.push('/done-recipes') }
+        >
+          Done Recipes
+        </button>
+        <button
+          type="button"
+          className="favoritebtn"
+          data-testid="profile-favorite-btn"
+          onClick={ () => history.push('/favorite-recipes') }
+        >
+          Favorite Recipes
+        </button>
+        <button
+          type="button"
+          className="logoutbtn"
+          data-testid="profile-logout-btn"
+          onClick={ handleClick }
+        >
+          Logout
+        </button>
+      </div>
       <Footer />
     </div>
   );

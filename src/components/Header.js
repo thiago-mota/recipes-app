@@ -10,31 +10,43 @@ function Header({ title }) {
   const [showSearch, setshowSearch] = useState(false);
   const history = useHistory();
   return (
-    <header className="headerIcons">
-      <button
-        type="button"
-        onClick={ () => history.push('/profile') }
-      >
-        <img
-          data-testid="profile-top-btn"
-          src={ profileIcon }
-          alt="profile icon"
-        />
-      </button>
-      <h1 data-testid="page-title">{title}</h1>
-      {title === 'Foods' || title === 'Drinks' || title === 'Explore Nationalities' ? (
+    <header>
+      <nav className="nav">
         <button
           type="button"
-          onClick={ () => setshowSearch(!showSearch) }
+          className="profilebtn"
+          onClick={ () => history.push('/profile') }
         >
           <img
-            data-testid="search-top-btn"
-            src={ searchIcon }
-            alt="search icon"
+            className="profile"
+            data-testid="profile-top-btn"
+            src={ profileIcon }
+            alt="profile icon"
           />
         </button>
-      ) : ''}
-      { showSearch ? <SearchBar /> : ''}
+        <h1 data-testid="page-title">{title}</h1>
+        {title === 'Foods' || title === 'Drinks' || title === 'Explore Nationalities' ? (
+          <button
+            className="searchbtn"
+            type="button"
+            onClick={ () => setshowSearch(!showSearch) }
+          >
+            <img
+              className="search"
+              data-testid="search-top-btn"
+              src={ searchIcon }
+              alt="search icon"
+            />
+          </button>
+        )
+          : (
+            <button
+              aria-label="btn"
+              type="button"
+              className="invisiblebtn"
+            />)}
+        { showSearch ? <SearchBar /> : ''}
+      </nav>
     </header>
   );
 }
