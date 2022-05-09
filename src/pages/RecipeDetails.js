@@ -26,7 +26,7 @@ function RecipeDetails() {
     // https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/String/replace#exemplos
     if (recipeDetails.strYoutube) {
       const url = recipeDetails.strYoutube;
-      return url.replace('watch?v=', 'embed');
+      return url.replace('watch?v=', 'embed/');
     }
   };
 
@@ -40,7 +40,6 @@ function RecipeDetails() {
         data-testid={ `${index}-ingredient-name-and-measure` }
       >
         { value }
-        -
         { recipeDetails['strMeasure'.concat(index + 1)] }
       </span>
     ));
@@ -94,12 +93,18 @@ function RecipeDetails() {
       </span>
       <h3>Video</h3>
       <iframe
-        title="recipe_video"
-        data-testid="video"
-        width="100%"
-        height="280"
+        width="560"
+        height="315"
         src={ recipeVideo() }
-      />
+        title="YouTube video player"
+        frameBorder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;
+        + picture-in-picture"
+        allowFullScreen
+        data-testid="video"
+      >
+        { recipeDetails.strYoutube }
+      </iframe>
       <div className="horizontalScroll">
         <h3>Recommended</h3>
         <RecomendationCard />
