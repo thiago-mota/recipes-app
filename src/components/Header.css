@@ -29,7 +29,12 @@
   width: 10px;
 }
 
-.titulo {
+.invisiblebtn {
+  visibility: hidden;
+}
+
+.titulopage {
   font-size: 20px;
   margin-top: 2px;
+  position: fixed;
 }

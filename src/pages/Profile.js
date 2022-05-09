@@ -22,7 +22,7 @@ function Profile() {
   }, []);
 
   return (
-    <div className="profile">
+    <div className="profilepage">
       <Header title="Profile" />
       <h3 data-testid="profile-email" className="email">{ user }</h3>
       <div className="profilebtns">
