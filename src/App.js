@@ -20,8 +20,8 @@ import DoneRecipes from './pages/DoneRecipes';
 
 function App() {
   return (
-    <Switch>
-      <Provider>
+    <Provider>
+      <Switch>
         <Route
           exact
           path="/"
@@ -68,30 +68,39 @@ function App() {
           path="/explore/drinks"
           component={ ExploreDrinks }
         />
-        <RecipeDetailsProvider>
-          <Route
-            exact
-            path="/foods/:id"
-            component={ RecipeDetails }
-          />
-          <Route
-            exact
-            path="/drinks/:id"
-            component={ RecipeDetails }
-          />
-        </RecipeDetailsProvider>
-        <IngredientsProvider>
-          <Route
-            exact
-            path="/drinks/:id/in-progress"
-            component={ RecipeInProgress }
-          />
-          <Route
-            exact
-            path="/foods/:id/in-progress"
-            component={ RecipeInProgress }
-          />
-        </IngredientsProvider>
+        <Route
+          exact
+          path="/foods/:id"
+        >
+          <RecipeDetailsProvider>
+            <RecipeDetails />
+          </RecipeDetailsProvider>
+        </Route>
+        <Route
+          exact
+          path="/drinks/:id"
+        >
+          <RecipeDetailsProvider>
+            <RecipeDetails />
+          </RecipeDetailsProvider>
+        </Route>
+
+        <Route
+          exact
+          path="/drinks/:id/in-progress"
+        >
+          <IngredientsProvider>
+            <RecipeInProgress />
+          </IngredientsProvider>
+        </Route>
+        <Route
+          exact
+          path="/foods/:id/in-progress"
+        >
+          <IngredientsProvider>
+            <RecipeInProgress />
+          </IngredientsProvider>
+        </Route>
         <Route
           exact
           path="/explore/drinks/ingredients"
@@ -106,8 +115,8 @@ function App() {
           path="*"
           component={ NotFound }
         />
-      </Provider>
-    </Switch>
+      </Switch>
+    </Provider>
   );
 }
 
