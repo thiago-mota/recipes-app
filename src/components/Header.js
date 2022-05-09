@@ -24,7 +24,7 @@ function Header({ title }) {
             alt="profile icon"
           />
         </button>
-        <h1 className="titulopage" data-testid="page-title">{title}</h1>
+        <h1 data-testid="page-title">{title}</h1>
         {title === 'Foods' || title === 'Drinks' || title === 'Explore Nationalities' ? (
           <button
             className="searchbtn"

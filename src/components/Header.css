@@ -17,6 +17,8 @@
 .profilebtn {
   border-radius: 20%;
   box-shadow: inset 0 0 1em rgb(199, 216, 231) , 0 0 1em rgb(255, 25, 25);
+  margin-left: 5px;
+  margin-right: 3px;
 }
 
 .searchbtn {
@@ -33,8 +35,8 @@
   visibility: hidden;
 }
 
-.titulopage {
-  font-size: 20px;
+.titulo {
+  font-size: large;
   margin-top: 2px;
   position: fixed;
 }
