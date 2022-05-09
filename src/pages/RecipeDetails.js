@@ -26,7 +26,7 @@ function RecipeDetails() {
     // https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/String/replace#exemplos
     if (recipeDetails.strYoutube) {
       const url = recipeDetails.strYoutube;
-      return url.replace(/watch/i, 'embed');
+      return url.replace('watch?v=', 'embed');
     }
   };
 
