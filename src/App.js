@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Switch, Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import Provider from './context/Provider';
 import Login from './pages/Login';
 import RecipeesList from './pages/RecipeesList';
@@ -15,7 +15,7 @@ import RecipeDetailsProvider from './context/RecipeDetailsProvider';
 import IngredientsProvider from './context/IngredientsProvider';
 import ExploreIngredients from './pages/ExploreIngredients';
 import ExploreNationality from './pages/ExploreNationality';
-import NotFound from './components/NotFound';
+import NotFound from './pages/NotFound';
 import DoneRecipes from './pages/DoneRecipes';
 
 function App() {
@@ -26,6 +26,7 @@ function App() {
           exact
           path="/"
           component={ Login }
+          // render={ (props) => (<Provider><Login { ...props } /></Provider>) }
         />
         <Route
           exact
